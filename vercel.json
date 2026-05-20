@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/网页原型v2.0.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/Web v2.0.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/Web%20v2.0.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}
