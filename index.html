@@ -301,31 +301,29 @@ h1, h2, h3, .serif {
 .section-header { margin-bottom: 64px; }
 .section-header-centered { text-align: center; margin-bottom: 64px; }
 
-.section-title {
-  font-size: clamp(32px, 5vw, 52px);
-  line-height: 1.1;
-  letter-spacing: -0.8px;
-  color: var(--ink);
-  margin-top: 12px;
-}
-
-#page-home .section-title,
-#page-home .section-title-light {
+.section-title,
+.section-title-light {
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: -0.5px;
 }
 
-#page-home .outcomes-section .outcome-card h3 {
+.section-title {
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.1;
+  color: var(--ink);
+  margin-top: 12px;
+}
+
+.outcome-card h3,
+.product-card-body h3 {
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: -0.3px;
 }
 
-#page-home .products-section .product-card-body h3 {
-  font-family: var(--font-display);
+.product-card-body h3 {
   font-weight: 600;
-  letter-spacing: -0.3px;
 }
 
 .about-tagline-display {
@@ -346,9 +344,71 @@ h1, h2, h3, .serif {
 .section-title-light {
   font-size: clamp(32px, 5vw, 52px);
   line-height: 1.1;
-  letter-spacing: -0.8px;
   color: #F7FFF6;
   margin-top: 12px;
+}
+
+/* Site-wide page heroes & display headings */
+.methodology-hero .inner h1,
+.products-hero h1,
+.about-hero-inner h1,
+.partners-hero h1,
+.news-hero-inner h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.conn-card h3,
+.tab-panel-text h3,
+.product-full-body h2,
+.brand-positioning h3,
+.vision-block h3,
+.contact-inner h2,
+.featured-body h3,
+.belief-left,
+.about-manifesto {
+  font-family: var(--font-display);
+  letter-spacing: -0.3px;
+}
+
+.conn-card h3,
+.tab-panel-text h3,
+.product-full-body h2,
+.brand-positioning h3,
+.contact-inner h2,
+.featured-body h3,
+.belief-left,
+.about-manifesto {
+  font-weight: 700;
+}
+
+.vision-block h3 {
+  font-weight: 600;
+}
+
+.divider-inner h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.about-manifesto {
+  font-size: clamp(24px, 4vw, 42px);
+  color: rgba(247, 255, 246, 0.92);
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+}
+
+.belief-left em {
+  color: var(--ink-muted);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.about-manifesto span {
+  color: rgba(236, 255, 244, 0.44);
+  font-weight: 400;
 }
 
 .section-sub {
@@ -559,7 +619,7 @@ h1, h2, h3, .serif {
   margin-bottom: 20px;
 }
 
-.outcome-card h3 { font-size: 26px; color: #F7FFF6; line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 14px; }
+.outcome-card h3 { font-size: 26px; color: #F7FFF6; line-height: 1.15; margin-bottom: 14px; }
 .outcome-card p { font-size: 14px; color: rgba(236,255,244,0.68); line-height: 1.7; font-weight: 300; }
 
 /* ─── PRODUCTS ─── */
@@ -623,7 +683,7 @@ h1, h2, h3, .serif {
 
 .product-card-body { padding: 32px; }
 .product-card-body .eyebrow { margin-bottom: 10px; }
-.product-card-body h3 { font-size: 24px; letter-spacing: -0.4px; margin-bottom: 10px; }
+.product-card-body h3 { font-size: 24px; margin-bottom: 10px; }
 .product-card-body p { font-size: 14.5px; color: var(--ink-secondary); line-height: 1.65; margin-bottom: 20px; font-weight: 300; }
 
 .feature-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
@@ -769,6 +829,113 @@ h1, h2, h3, .serif {
 }
 .partner-badge:hover { border-color: var(--accent); color: var(--accent-strong); background: rgba(19,185,130,0.08); }
 
+.slogan-banner-section {
+  position: relative;
+  width: 100%;
+  padding: 56px 40px 64px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(231, 251, 255, 0.55) 0%, rgba(231, 251, 255, 0.15) 14%, transparent 28%),
+    linear-gradient(135deg, #FFFFFF 0%, #F4FFF5 42%, #F4FFCF 100%);
+  line-height: normal;
+}
+
+.slogan-banner-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.slogan-banner-glow {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(420px, 70vw);
+  height: min(420px, 70vw);
+  background: radial-gradient(circle, rgba(185, 255, 90, 0.34) 0%, rgba(185, 255, 90, 0.12) 42%, transparent 72%);
+  filter: blur(36px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.slogan-banner-lines {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: min(140px, 18vw);
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 10px,
+    rgba(0, 109, 80, 0.045) 10px,
+    rgba(0, 109, 80, 0.045) 11px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.slogan-banner-logo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.slogan-banner-logo img {
+  width: clamp(180px, 22vw, 240px);
+  height: auto;
+  display: block;
+}
+
+.slogan-banner-headline {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.6vw, 54px);
+  font-weight: 700;
+  color: var(--accent-strong);
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+  margin: 0;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.slogan-banner-headline .slogan-icon {
+  display: inline-block;
+  vertical-align: -0.1em;
+  width: 0.82em;
+  height: 0.82em;
+  margin: 0 0.01em;
+}
+
+.slogan-banner-headline .slogan-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+  shape-rendering: geometricPrecision;
+}
+
+.slogan-banner-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 500;
+  color: var(--accent-strong);
+  letter-spacing: 0.01em;
+  margin-top: 22px;
+}
+
+@media (max-width: 640px) {
+  .slogan-banner-section { padding: 44px 24px 52px; }
+  .slogan-banner-headline {
+    font-size: clamp(22px, 5.8vw, 30px);
+    letter-spacing: -0.5px;
+  }
+}
+
 /* ─── PAGE: METHODOLOGY ─── */
 .methodology-hero { background: linear-gradient(135deg, var(--dark-bg), #006D50); padding: 160px 40px 100px; text-align: center; position: relative; overflow: hidden; }
 .methodology-hero::before {
@@ -813,7 +980,7 @@ h1, h2, h3, .serif {
 .conn-card:hover::before { opacity: 1; }
 
 .conn-number { font-family: 'Instrument Serif', serif; font-size: 48px; color: var(--border); margin-bottom: 20px; line-height: 1; }
-.conn-card h3 { font-size: 20px; letter-spacing: -0.3px; margin-bottom: 12px; }
+.conn-card h3 { font-size: 20px; margin-bottom: 12px; }
 .conn-card p { font-size: 14.5px; color: var(--ink-secondary); line-height: 1.7; font-weight: 300; }
 
 /* Tabbed section */
@@ -1064,8 +1231,11 @@ h1, h2, h3, .serif {
 
 .belief-section { background: var(--surface); }
 .belief-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-.belief-left h2 { font-size: 48px; letter-spacing: -1px; line-height: 1.08; }
-.belief-left h2 em { color: var(--ink-muted); font-style: italic; }
+.belief-left {
+  font-size: clamp(36px, 5vw, 56px);
+  letter-spacing: -0.5px;
+  line-height: 1.07;
+}
 .belief-right p { font-size: 16px; color: var(--ink-secondary); line-height: 1.8; font-weight: 300; }
 .belief-right p + p { margin-top: 20px; }
 
@@ -1310,7 +1480,7 @@ h1, h2, h3, .serif {
 .news-hero { background: linear-gradient(135deg, var(--dark-bg), #006D50); padding: 160px 40px 80px; position: relative; overflow: hidden; }
 .news-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 30% 50%, rgba(185, 255, 90, 0.2) 0%, transparent 60%); pointer-events: none; }
 .news-hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
-.news-hero-inner h1 { font-size: clamp(44px, 6vw, 72px); color: #F7FFF6; letter-spacing: -1.5px; max-width: 600px; }
+.news-hero-inner h1 { font-size: clamp(44px, 6vw, 72px); color: #F7FFF6; letter-spacing: -0.5px; max-width: none; white-space: nowrap; }
 .news-hero-inner p { font-size: 17px; color: rgba(236,255,244,0.68); margin-top: 16px; font-weight: 300; max-width: 480px; }
 
 .news-main { background: var(--bg); }
@@ -1341,7 +1511,14 @@ footer {
   padding-bottom: 60px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.footer-brand h3 { font-family: 'Instrument Serif', serif; font-size: 22px; color: #F7FFF6; margin-bottom: 10px; }
+.footer-brand-logo {
+  height: 44px;
+  width: auto;
+  display: block;
+  margin-bottom: 12px;
+  mix-blend-mode: screen;
+}
+
 .footer-brand .tagline { font-size: 13px; color: rgba(236,255,244,0.48); font-style: italic; font-family: 'Instrument Serif', serif; }
 .footer-brand p { font-size: 13.5px; line-height: 1.7; margin-top: 16px; color: rgba(236,255,244,0.62); font-weight: 300; }
 
@@ -1754,6 +1931,21 @@ footer {
     </div>
   </section>
 
+  <!-- BRAND SLOGAN BANNER -->
+  <section class="slogan-banner-section">
+    <div class="slogan-banner-lines" aria-hidden="true"></div>
+    <div class="slogan-banner-glow" aria-hidden="true"></div>
+    <div class="slogan-banner-inner animate-in">
+      <div class="slogan-banner-logo">
+        <img src="assets/c-lingo-logo-nav.png" alt="C-Lingo AIOS">
+      </div>
+      <h2 class="slogan-banner-headline" aria-label="Beyond Language. To Bigger Worlds.">
+        Bey<span class="slogan-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="slogan-star-grad" x1="4" y1="2" x2="20" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F6C83A"/><stop offset="1" stop-color="#B9FF5A"/></linearGradient></defs><path fill="url(#slogan-star-grad)" d="M12 2C13.15 8.08 15.92 10.85 22 12C15.92 13.15 13.15 15.92 12 22C10.85 15.92 8.08 13.15 2 12C8.08 10.85 10.85 8.08 12 2Z"/></svg></span>nd Language. To Bigger W<span class="slogan-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="slogan-globe-grad" x1="9" y1="8" x2="40" y2="42" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2FB56D"/><stop offset="0.55" stop-color="#55A969"/><stop offset="1" stop-color="#F4D554"/></linearGradient></defs><g stroke="url(#slogan-globe-grad)" stroke-width="4"><circle cx="24" cy="24" r="20"/><path d="M24 4v40"/><path d="M5 24h38"/><path d="M13 8.4c5.8 2.7 16.2 2.7 22 0"/><path d="M13 39.6c5.8-2.7 16.2-2.7 22 0"/><path d="M18.5 5.8c-5.6 10.8-5.6 25.6 0 36.4"/><path d="M29.5 5.8c5.6 10.8 5.6 25.6 0 36.4"/></g></svg></span>rlds.
+      </h2>
+      <p class="slogan-banner-tagline">Redefining Language Learning with AI</p>
+    </div>
+  </section>
+
 </div>
 
 <!-- ══════════════════════════════════════ METHODOLOGY ══════════════════════════════════════ -->
@@ -2119,7 +2311,7 @@ footer {
   <section class="section-full" style="background:var(--dark-bg); padding:80px 40px;">
     <div style="max-width:800px; margin:0 auto; text-align:center;">
       <div class="animate-in">
-        <p style="font-family:'Instrument Serif',serif; font-size:clamp(24px,4vw,42px); color:rgba(247,255,246,0.92); line-height:1.35; letter-spacing:-0.5px;">We learn in fragments.<br><span style="color:rgba(236,255,244,0.44);">But language is never used in fragments.</span><br>That's the problem.</p>
+        <p class="about-manifesto">We learn in fragments.<br><span>But language is never used in fragments.</span><br>That's the problem.</p>
         <p style="font-size:18px; color:rgba(236,255,244,0.58); margin-top:28px; font-weight:300; line-height:1.65;">Language learning is changing.<br>C-Lingo is redefining how it works with AI.</p>
       </div>
     </div>
@@ -2130,7 +2322,7 @@ footer {
     <div class="belief-inner">
       <div class="animate-in">
         <div class="eyebrow" style="margin-bottom:16px;">Brand Story</div>
-        <h2 class="belief-left" style="font-family:'Instrument Serif',serif; font-size:clamp(36px,5vw,56px); letter-spacing:-1px; line-height:1.07;">We didn't start with a business opportunity. <em>We started with a belief.</em></h2>
+        <h2 class="belief-left">We didn't start with a business opportunity. <em>We started with a belief.</em></h2>
       </div>
       <div class="animate-in" style="transition-delay:0.15s;">
         <p style="font-size:16px; color:var(--ink-secondary); line-height:1.8; font-weight:300;">Language learning can work better.<br>Language is more than a skill.<br>It connects people to bigger worlds.</p>
@@ -2200,7 +2392,7 @@ footer {
 
       <div class="logo-ripple" aria-hidden="true"></div>
       <div class="glass-logo-wrap" aria-hidden="true">
-        <img class="glass-logo" src="assets/glass-logo-3d.png" alt="">
+        <img class="glass-logo" src="assets/glass-logo-3d.png?v=2" alt="">
       </div>
       <div class="logo-shadow" aria-hidden="true"></div>
 
@@ -2417,7 +2609,7 @@ footer {
   <div class="news-hero">
     <div class="news-hero-inner animate-in">
       <div class="eyebrow" style="color:rgba(236,255,244,0.48); margin-bottom:16px;">Latest</div>
-      <h1>News &<br>Updates</h1>
+      <h1>News & Updates</h1>
       <p>Stay up to date with the latest from C-Lingo and NSK Smart Education.</p>
     </div>
   </div>
@@ -2473,7 +2665,7 @@ footer {
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <h3>C-Lingo</h3>
+        <img class="footer-brand-logo" src="assets/c-lingo-logo-footer.png" alt="C-Lingo AIOS">
         <div class="tagline">Beyond Language. To Bigger Worlds.</div>
         <p>C-Lingo is an AI-powered Chinese learning platform built by NSK Smart Education, redefining how language learning works with AI.</p>
       </div>
