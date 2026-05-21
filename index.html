@@ -8,7 +8,7 @@ html
 <title>C-Lingo — Beyond Language. To Bigger Worlds.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Montserrat:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Montserrat:ital,wght@0,600;0,700;1,600;1,700&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -32,6 +32,8 @@ html
   --radius: 16px;
   --radius-sm: 10px;
   --transition: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --font-display: 'Noto Sans SC', 'Source Han Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'SimSun', serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -198,16 +200,20 @@ h1, h2, h3, .serif {
 }
 
 .hero h1 {
-  font-family: 'Montserrat', 'DM Sans', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(42px, 7vw, 80px);
   font-weight: 700;
   color: var(--ink);
   line-height: 1.07;
-  letter-spacing: -1.5px;
+  letter-spacing: -0.5px;
   margin-bottom: 24px;
 }
 
-.hero h1 em { color: var(--accent-strong); font-style: italic; }
+.hero h1 em {
+  color: var(--accent-strong);
+  font-weight: 500;
+  font-style: italic;
+}
 
 .hero-sub {
   font-size: clamp(16px, 2vw, 19px);
@@ -301,6 +307,40 @@ h1, h2, h3, .serif {
   letter-spacing: -0.8px;
   color: var(--ink);
   margin-top: 12px;
+}
+
+#page-home .section-title,
+#page-home .section-title-light {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+#page-home .outcomes-section .outcome-card h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+#page-home .products-section .product-card-body h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.about-tagline-display {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 44px);
+  color: #F7FFF6;
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+}
+
+.about-tagline-display .tagline-accent {
+  color: rgba(236, 255, 244, 0.44);
+  font-weight: 400;
+  font-style: italic;
 }
 
 .section-title-light {
@@ -616,12 +656,13 @@ h1, h2, h3, .serif {
 .testimonial-card:hover { box-shadow: 0 12px 36px rgba(0,109,80,0.1); transform: translateY(-3px); }
 
 .testimonial-quote {
+  font-family: var(--font-serif);
   font-size: 15px;
   line-height: 1.7;
   color: var(--ink);
   margin-bottom: 24px;
+  font-weight: 400;
   font-style: italic;
-  font-family: 'Instrument Serif', serif;
 }
 
 .testimonial-author { display: flex; align-items: center; gap: 12px; }
@@ -658,6 +699,12 @@ h1, h2, h3, .serif {
 .divider-inner { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
 .divider-inner h2 { font-size: clamp(36px, 6vw, 64px); color: #F7FFF6; line-height: 1.08; letter-spacing: -1.5px; }
 .divider-inner h2 em { color: rgba(236,255,244,0.48); font-style: italic; }
+
+#page-home > .divider-section .divider-inner h2 {
+  font-family: 'Montserrat', 'DM Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
 .divider-inner p { margin-top: 24px; font-size: 17px; color: rgba(236,255,244,0.68); font-weight: 300; line-height: 1.65; }
 .divider-actions { margin-top: 40px; display: flex; gap: 12px; justify-content: center; }
 
@@ -1457,7 +1504,7 @@ footer {
           <div style="position: absolute; inset:0; background: radial-gradient(ellipse 100% 60% at 50% 100%, rgba(185, 255, 90, 0.18) 0%, transparent 70%);"></div>
           <div style="position: relative; z-index: 1;">
             <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-warm); margin-bottom: 16px;">Our Tagline</div>
-            <div style="font-family: 'Instrument Serif', serif; font-size: 44px; color: #F7FFF6; line-height: 1.05; letter-spacing: -1px;">Beyond<br>Language.<br><span style="color: rgba(236,255,244,0.44); font-style: italic;">To Bigger<br>Worlds.</span></div>
+            <div class="about-tagline-display">Beyond<br>Language.<br><span class="tagline-accent">To Bigger<br>Worlds.</span></div>
           </div>
         </div>
       </div>
