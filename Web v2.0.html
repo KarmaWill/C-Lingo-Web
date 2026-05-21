@@ -215,6 +215,10 @@ h1, h2, h3, .serif {
   font-style: italic;
 }
 
+#slide-0 h1 em {
+  white-space: nowrap;
+}
+
 .hero-sub {
   font-size: clamp(16px, 2vw, 19px);
   color: var(--ink-secondary);
@@ -934,7 +938,6 @@ h1, h2, h3, .serif {
     font-size: clamp(22px, 5.8vw, 30px);
     letter-spacing: -0.5px;
   }
-  .slogan-banner-arc { width: min(92%, 520px); }
 }
 
 /* ─── PAGE: METHODOLOGY ─── */
@@ -1943,27 +1946,6 @@ footer {
       <h2 class="slogan-banner-headline" aria-label="Beyond Language. To Bigger Worlds.">
         Bey<span class="slogan-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="slogan-star-grad" x1="4" y1="2" x2="20" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F6C83A"/><stop offset="1" stop-color="#B9FF5A"/></linearGradient></defs><path fill="url(#slogan-star-grad)" d="M12 2C13.15 8.08 15.92 10.85 22 12C15.92 13.15 13.15 15.92 12 22C10.85 15.92 8.08 13.15 2 12C8.08 10.85 10.85 8.08 12 2Z"/></svg></span>nd Language. To Bigger W<span class="slogan-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="slogan-globe-grad" x1="9" y1="8" x2="40" y2="42" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2FB56D"/><stop offset="0.55" stop-color="#55A969"/><stop offset="1" stop-color="#F4D554"/></linearGradient></defs><g stroke="url(#slogan-globe-grad)" stroke-width="4"><circle cx="24" cy="24" r="20"/><path d="M24 4v40"/><path d="M5 24h38"/><path d="M13 8.4c5.8 2.7 16.2 2.7 22 0"/><path d="M13 39.6c5.8-2.7 16.2-2.7 22 0"/><path d="M18.5 5.8c-5.6 10.8-5.6 25.6 0 36.4"/><path d="M29.5 5.8c5.6 10.8 5.6 25.6 0 36.4"/></g></svg></span>rlds.
       </h2>
-      <div class="slogan-banner-arc" aria-hidden="true">
-        <svg viewBox="0 0 640 36" preserveAspectRatio="xMidYMid meet">
-          <defs>
-            <linearGradient id="slogan-arc-grad" x1="0" y1="0" x2="640" y2="0" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#C8D747"/>
-              <stop offset="18%" stop-color="#E4ED86"/>
-              <stop offset="50%" stop-color="#FFF6D1"/>
-              <stop offset="82%" stop-color="#E4ED86"/>
-              <stop offset="100%" stop-color="#C8D747"/>
-            </linearGradient>
-            <filter id="slogan-arc-glow" x="-10%" y="-40%" width="120%" height="180%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="0.8" result="blur"/>
-              <feMerge>
-                <feMergeNode in="blur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
-          <path d="M24 30 C 148 30, 214 12, 320 12 C 426 12, 492 30, 616 30" fill="none" stroke="url(#slogan-arc-grad)" stroke-width="2.6" stroke-linecap="round" filter="url(#slogan-arc-glow)"/>
-        </svg>
-      </div>
       <p class="slogan-banner-tagline">Redefining Language Learning with AI</p>
     </div>
   </section>
