@@ -164,7 +164,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent-warm);
+  color: #B8923F;
 }
 
 h1, h2, h3, .serif {
@@ -264,19 +264,17 @@ h1, h2, h3, .serif {
 
 .hero-actions .btn-primary,
 .hero-actions .btn-ghost {
-  font-family: var(--font-hero);
-  font-weight: 400;
+  font-family: var(--font-google-sans);
+  font-weight: 500;
   font-style: normal;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
+  font-size: 15px;
 }
 
-#slide-2 .hero-sub,
-#slide-2 .hero-actions .btn-primary,
-#slide-2 .hero-actions .btn-ghost {
+#slide-2 .hero-sub {
   font-family: var(--font-google-sans);
   letter-spacing: 0.02em;
 }
-#slide-2 .hero-actions .btn-primary { font-weight: 500; }
 
 .btn-primary {
   font-family: 'DM Sans', sans-serif;
@@ -441,6 +439,91 @@ h1, h2, h3, .serif {
   filter: drop-shadow(0 20px 34px rgba(0, 71, 53, 0.24));
 }
 
+.about-tagline-card--logo {
+  justify-content: center;
+  align-items: center;
+}
+
+.about-tagline-card--logo::before {
+  display: none;
+}
+
+.about-tagline-card--logo .about-tagline-products {
+  flex: 0 0 auto;
+}
+
+.about-tagline-card--logo .glass-logo {
+  width: 214px;
+  height: 214px;
+  max-width: 214px;
+  max-height: 214px;
+  object-fit: contain;
+  border-radius: 32px;
+  filter: drop-shadow(0 30px 28px rgba(0, 109, 80, 0.22));
+}
+
+.about-tagline-card--keywords {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  padding: 18px;
+  justify-content: center;
+  align-items: stretch;
+  box-shadow: 0 28px 70px rgba(0, 109, 80, 0.1);
+  background: transparent;
+}
+
+.about-tagline-card--keywords::after {
+  background:
+    radial-gradient(circle at 100% 6%, rgba(185, 255, 90, 0.32) 0%, rgba(185, 255, 90, 0.12) 24%, transparent 44%),
+    radial-gradient(circle at 0% 100%, rgba(185, 255, 90, 0.2) 0%, rgba(185, 255, 90, 0.08) 18%, transparent 38%),
+    linear-gradient(105deg, #F8FCF7 0%, #F2FFF8 45%, #FAF9E4 100%);
+}
+
+.about-tagline-card--keywords::before {
+  display: none;
+}
+
+.about-tagline-card--keywords .keywords-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-width: none;
+  flex: 1;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-tagline-card--keywords .glass-logo-wrap {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: min(68%, 340px);
+  height: min(68%, 340px);
+  transform: none;
+  filter: drop-shadow(0 32px 36px rgba(0, 109, 80, 0.2));
+}
+
+.about-tagline-card--keywords .logo-ripple {
+  top: 50%;
+  left: 50%;
+  width: min(92%, 480px);
+  height: min(28%, 170px);
+  transform: translate(-50%, -12%);
+}
+
+.about-tagline-card--keywords .logo-shadow {
+  top: calc(50% + min(34%, 172px));
+  left: 50%;
+  width: min(50%, 320px);
+  height: 28px;
+  transform: translateX(-50%);
+}
+
 .about-tagline-card-content {
   position: relative;
   z-index: 2;
@@ -546,6 +629,23 @@ h1, h2, h3, .serif {
 .about-manifesto span {
   color: rgba(236, 255, 244, 0.44);
   font-weight: 400;
+}
+
+.about-manifesto-logo-wrap {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 0;
+  background: var(--dark-bg);
+  margin: 0 0.12em;
+}
+
+.about-manifesto-logo {
+  display: inline-block;
+  height: 1.1em;
+  width: auto;
+  margin: 0;
+  vertical-align: middle;
+  mix-blend-mode: screen;
 }
 
 .section-sub {
@@ -781,6 +881,178 @@ h1, h2, h3, .serif {
 
 .product-visual-pen img {
   object-fit: cover;
+}
+
+.product-video-play {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.product-full-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.product-full-actions .btn-dark {
+  height: 43px;
+  padding: 0 24px;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.product-video-intro {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent-strong);
+  background: transparent;
+  border: 1.5px solid var(--border-dark);
+  height: 43px;
+  padding: 0 20px;
+  border-radius: 22px;
+  cursor: pointer;
+  box-sizing: border-box;
+  line-height: 1;
+  transition: all 0.2s var(--transition);
+}
+
+.product-video-intro:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+  background: rgba(19, 185, 130, 0.06);
+}
+
+.product-video-intro-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+  position: relative;
+  flex-shrink: 0;
+}
+
+.product-video-intro-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid #fff;
+}
+
+.product-full-visual:hover .product-video-play .testimonial-play::before {
+  transform: scale(1.06);
+}
+
+.home-video-section {
+  background:
+    radial-gradient(ellipse 34% 28% at 50% 21%, rgba(185, 255, 90, 0.7) 0%, rgba(185, 255, 90, 0.32) 34%, transparent 68%),
+    radial-gradient(ellipse 52% 46% at 100% 42%, rgba(185, 255, 90, 0.35) 0%, transparent 62%),
+    radial-gradient(ellipse 55% 52% at 0% 56%, rgba(231, 251, 255, 0.9) 0%, transparent 68%),
+    linear-gradient(115deg, #FFFFFF 0%, #F1FFFA 34%, #ECFFF0 63%, #F7F5C4 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-video-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 109, 80, 0.06) 1px, transparent 1px),
+    radial-gradient(ellipse 45% 2.8% at 50% 57%, rgba(246, 200, 58, 0.82) 0%, rgba(246, 200, 58, 0.58) 44%, transparent 72%);
+  background-size: 58px 100%, 100% 100%;
+  opacity: 0.78;
+  pointer-events: none;
+}
+
+.home-video-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.home-video-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 48px;
+}
+
+.home-video-header .hero-label {
+  margin-bottom: 24px;
+}
+
+.home-video-header h2 {
+  font-family: var(--font-hero);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.home-video-header h2 em {
+  color: var(--accent-strong);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.home-video-header p {
+  font-family: var(--font-hero);
+  font-size: clamp(16px, 1.9vw, 18px);
+  color: var(--ink-secondary);
+  font-weight: 400;
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.home-video-frame {
+  border: 1px solid rgba(0, 109, 80, 0.12);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.72);
+  padding: 14px;
+  box-shadow: 0 28px 70px rgba(0, 109, 80, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.25s var(--transition), box-shadow 0.25s var(--transition);
+}
+
+.home-video-frame:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 32px 80px rgba(0, 109, 80, 0.16);
+}
+
+.home-video-embed {
+  border-radius: calc(var(--radius) - 6px);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 1px solid rgba(0, 109, 80, 0.1);
+  box-shadow: 0 12px 32px rgba(0, 109, 80, 0.1);
+}
+
+.home-video-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
 }
 
 .product-card-body { padding: 32px; }
@@ -1224,37 +1496,123 @@ body.video-modal-open { overflow: hidden; }
 .methodology-hero .inner h1 em { color: rgba(236,255,244,0.5); font-style: italic; display: block; font-size: 0.6em; letter-spacing: 0.04em; text-transform: uppercase; font-family: var(--font-hero); font-weight: 400; margin-bottom: 12px; }
 .methodology-hero .inner p { font-size: 20px; color: rgba(236,255,244,0.72); font-weight: 300; line-height: 1.7; max-width: 560px; margin: 24px auto 0; }
 
-.four-connections {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+.method-framework-section {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(185, 255, 90, 0.2) 0%, transparent 30%),
+    radial-gradient(circle at 88% 18%, rgba(185, 255, 90, 0.24) 0%, transparent 28%),
+    linear-gradient(105deg, #F8FCF7 0%, #F2FFF8 48%, #FAF9E4 100%);
+  overflow: hidden;
+}
+
+.method-framework-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.method-framework-section .section-header-centered .section-sub {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.method-framework-stage {
   margin-top: 48px;
 }
 
-.conn-card {
-  border: 1px solid var(--border);
+.framework-map-card {
+  position: relative;
+  border: 1px solid rgba(0, 109, 80, 0.1);
+  border-radius: 30px;
+  min-height: clamp(390px, 44vw, 540px);
+  padding: clamp(28px, 4vw, 48px);
+  background:
+    radial-gradient(circle at 18% 74%, rgba(185, 255, 90, 0.28) 0%, transparent 24%),
+    radial-gradient(circle at 84% 18%, rgba(185, 255, 90, 0.22) 0%, transparent 26%),
+    linear-gradient(110deg, rgba(244,255,248,0.94) 0%, rgba(239,255,245,0.92) 45%, rgba(251,249,223,0.94) 100%);
+  box-shadow: 0 28px 80px rgba(0, 109, 80, 0.1);
+}
+
+.framework-map-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse 42% 60% at 50% 48%, rgba(246, 200, 58, 0.2) 0%, transparent 68%),
+    radial-gradient(ellipse 55% 70% at 50% 50%, rgba(19, 185, 130, 0.12) 0%, transparent 66%);
+  pointer-events: none;
+}
+
+.framework-map {
+  position: relative;
+  z-index: 1;
+}
+
+.framework-diagram {
+  display: block;
+  width: min(100%, 920px);
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.framework-diagram .fc-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  fill: var(--ink);
+}
+
+.framework-diagram .fc-label-strong {
+  font-weight: 600;
+}
+
+.framework-diagram .fc-label-dash {
+  fill: rgba(0, 71, 53, 0.72);
+}
+
+.framework-diagram .fc-center-text {
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -0.8px;
+}
+
+.four-connections {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-top: 22px;
+  border: 1px solid rgba(0, 109, 80, 0.1);
   border-radius: var(--radius);
-  padding: 36px;
-  background: var(--surface);
+  overflow: hidden;
+  background: rgba(0, 109, 80, 0.08);
+}
+
+.conn-card {
+  padding: 28px 24px;
+  background: rgba(255, 255, 255, 0.76);
   transition: all 0.25s;
   position: relative;
   overflow: hidden;
 }
-.conn-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--accent-warm);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.conn-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,109,80,0.1); }
-.conn-card:hover::before { opacity: 1; }
 
-.conn-number { font-family: 'Instrument Serif', serif; font-size: 48px; color: var(--border); margin-bottom: 20px; line-height: 1; }
-.conn-card h3 { font-size: 20px; margin-bottom: 12px; }
-.conn-card p { font-size: 14.5px; color: var(--ink-secondary); line-height: 1.7; font-weight: 300; }
+.conn-card:hover {
+  background: #F4FFF8;
+  transform: translateY(-2px);
+}
+
+.conn-number {
+  font-family: var(--font-google-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent-warm);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.conn-card h3 { font-size: 17px; margin-bottom: 10px; letter-spacing: -0.2px; }
+.conn-card p { font-size: 13.5px; color: var(--ink-secondary); line-height: 1.65; font-weight: 300; }
 
 /* Tabbed section */
 .tabs-section { background: var(--bg); padding: 80px 40px; }
@@ -1476,7 +1834,16 @@ body.video-modal-open { overflow: hidden; }
 .product-full-body { padding: 48px; }
 .product-full-body .eyebrow-accent { margin-bottom: 10px; }
 .product-full-body h2 { font-size: 34px; letter-spacing: -0.7px; line-height: 1.1; margin-bottom: 12px; }
-.product-full-body .subtitle { font-size: 15px; color: var(--accent-warm); font-style: italic; font-family: 'Instrument Serif', serif; margin-bottom: 20px; }
+.product-full-body .subtitle {
+  font-size: 18px;
+  color: var(--ink);
+  font-style: italic;
+  font-family: 'Instrument Serif', serif;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  border-left: 3px solid var(--accent-warm);
+  padding-left: 20px;
+}
 .product-full-body p { font-size: 15px; color: var(--ink-secondary); line-height: 1.75; font-weight: 300; margin-bottom: 28px; }
 
 .product-detail-hero {
@@ -1606,13 +1973,16 @@ body.video-modal-open { overflow: hidden; }
 }
 .about-hero-inner .tagline { font-size: 26px; color: rgba(236,255,244,0.58); font-weight: 300; margin-top: 20px; line-height: 1.5; font-style: italic; font-family: 'Instrument Serif', serif; }
 .about-problem-sub { font-size: 18px; color: rgba(236,255,244,0.58); margin-top: 28px; font-weight: 300; line-height: 1.65; font-style: italic; font-family: 'Instrument Serif', serif; }
+.about-problem-sub:first-child { margin-top: 0; }
+.about-problem-sub span { color: rgba(236, 255, 244, 0.44); font-weight: 400; }
+.about-manifesto:not(:first-child) { margin-top: 28px; }
 
 .belief-section { background: var(--surface); }
 .belief-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .belief-left {
-  font-size: clamp(36px, 5vw, 56px);
-  letter-spacing: -0.5px;
-  line-height: 1.07;
+  font-size: clamp(28px, 3.6vw, 40px);
+  letter-spacing: -0.4px;
+  line-height: 1.15;
 }
 .belief-right p { font-size: 16px; color: var(--ink-secondary); line-height: 1.8; font-weight: 300; }
 .belief-right p + p { margin-top: 20px; }
@@ -1816,6 +2186,62 @@ body.video-modal-open { overflow: hidden; }
   white-space: nowrap;
 }
 
+#page-about .divider-section .about-slogan-banner {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  margin: 48px auto 0;
+  padding: 0;
+  text-align: center;
+}
+
+#page-about .divider-section .about-slogan-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(480px, 75vw);
+  height: min(480px, 75vw);
+  background: radial-gradient(circle, rgba(185, 255, 90, 0.22) 0%, rgba(185, 255, 90, 0.08) 42%, transparent 72%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#page-about .divider-section .about-slogan-headline {
+  position: relative;
+  z-index: 1;
+  font-family: 'OPPO Sans', var(--font-display);
+  font-size: clamp(22px, 4.2vw, 42px);
+  font-weight: 700;
+  color: #F7FFF6;
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+  margin: 0;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#page-about .divider-section .about-slogan-headline .slogan-icon {
+  display: inline-block;
+  vertical-align: -0.1em;
+  width: 0.82em;
+  height: 0.82em;
+  margin: 0 0.01em;
+}
+
+#page-about .divider-section .about-slogan-headline .slogan-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+  shape-rendering: geometricPrecision;
+}
+
+#page-about .vision-block h3 { font-size: 26px; }
+#page-about .vision-block p { font-size: 17px; line-height: 1.8; }
+
 .learning-pyramid-card {
   background: var(--bg);
   border: 1px solid var(--border);
@@ -1934,6 +2360,46 @@ body.video-modal-open { overflow: hidden; }
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 .article-back:active { transform: translateX(-1px); }
+
+#page-news-article .article-back,
+#page-news-article-values .article-back,
+#page-news-article-vietnam .article-back,
+#page-news-article-interview .article-back,
+#page-product-tablet .article-back,
+#page-product-scanpen .article-back {
+  position: fixed;
+  top: 80px;
+  left: max(20px, calc((100vw - 820px) / 2));
+  z-index: 900;
+  margin-bottom: 0;
+  background: rgba(0, 71, 53, 0.78);
+  border-color: rgba(185, 255, 90, 0.38);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+#page-news-article .article-back:hover,
+#page-news-article-values .article-back:hover,
+#page-news-article-vietnam .article-back:hover,
+#page-news-article-interview .article-back:hover,
+#page-product-tablet .article-back:hover,
+#page-product-scanpen .article-back:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(185, 255, 90, 0.62);
+  transform: translateX(-3px) translateY(-1px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 860px) {
+  #page-news-article .article-back,
+  #page-news-article-values .article-back,
+  #page-news-article-vietnam .article-back,
+  #page-news-article-interview .article-back,
+  #page-product-tablet .article-back,
+  #page-product-scanpen .article-back {
+    left: 16px;
+    top: 76px;
+  }
+}
 .article-hero-inner .news-date { font-size: 12px; color: rgba(236,255,244,0.48); margin-bottom: 16px; }
 .article-hero-inner h1 { font-family: var(--font-hero); font-size: clamp(32px, 4.5vw, 52px); color: #F7FFF6; letter-spacing: -0.5px; line-height: 1.15; font-weight: 600; }
 
@@ -2113,6 +2579,15 @@ footer {
     max-width: 560px;
     margin: 0 auto;
   }
+  .about-tagline-card--keywords {
+    height: auto;
+    aspect-ratio: 1 / 1;
+    max-width: min(100%, 420px);
+  }
+  .about-tagline-card--keywords .glass-logo-wrap {
+    width: min(72%, 280px);
+    height: min(72%, 280px);
+  }
   .about-tagline-products img {
     width: min(100%, 420px);
     max-height: min(100%, 360px);
@@ -2123,10 +2598,15 @@ footer {
   .testimonials-grid { grid-template-columns: 1fr; }
   .news-grid { grid-template-columns: 1fr; }
   .four-connections { grid-template-columns: 1fr; }
+  .framework-map-card { padding: 24px 12px; min-height: auto; }
+  .framework-diagram .fc-label { font-size: 14px; }
+  .framework-diagram .fc-center-text { font-size: 30px; }
   .tab-panel.active { grid-template-columns: 1fr; }
   .outcomes-list-dark { grid-template-columns: 1fr; }
   .product-full-card { grid-template-columns: 1fr; }
   .product-full-visual { min-height: 220px; }
+  .product-full-body { padding: 32px 24px; }
+  .product-full-body h2 { font-size: 28px; }
   .product-detail-features { grid-template-columns: 1fr; }
   .product-detail-highlights { grid-template-columns: 1fr; gap: 32px; }
   .product-detail-showcase { min-height: 280px; margin-top: -32px; }
@@ -2136,6 +2616,7 @@ footer {
   .vision-grid { grid-template-columns: 1fr; }
   .keywords-section { padding: 64px 24px 72px; min-height: auto; }
   #page-about .divider-section .divider-inner h2 { font-size: clamp(22px, 5.5vw, 36px); }
+  #page-about .divider-section .about-slogan-headline { font-size: clamp(22px, 5.8vw, 30px); letter-spacing: -0.5px; }
   .article-keywords-embed { padding: 32px 20px 40px; }
   .article-keywords-embed .keywords-scene { min-height: 680px; }
   .article-keywords-embed .glass-logo-wrap { top: 150px; width: 160px; height: 160px; }
@@ -2194,7 +2675,6 @@ footer {
         <p class="hero-sub">Redefining how language learning works with AI.</p>
         <div class="hero-actions">
           <a class="btn-primary" onclick="goTo('about')">Explore C-Lingo</a>
-          <a class="btn-ghost" onclick="goTo('methodology')">Our Methodology</a>
         </div>
       </div>
 
@@ -2204,7 +2684,6 @@ footer {
         <p class="hero-sub">Designed for learners worldwide to study smarter and use Chinese in real life.</p>
         <div class="hero-actions">
           <a class="btn-primary" onclick="goTo('products')">Explore Products</a>
-          <a class="btn-ghost" onclick="goTo('methodology')">Learn How It Works</a>
         </div>
       </div>
 
@@ -2214,7 +2693,6 @@ footer {
         <p class="hero-sub">From fragmented learning to structured skills for exams and daily life.</p>
         <div class="hero-actions">
           <a class="btn-primary" onclick="goTo('methodology')">Explore Methodology</a>
-          <a class="btn-ghost" onclick="goTo('products')">See Products</a>
         </div>
       </div>
 
@@ -2254,15 +2732,86 @@ footer {
         </div>
       </div>
       <div class="animate-in" style="transition-delay:0.15s">
-        <div class="about-tagline-card">
-          <div class="about-tagline-products">
-            <img src="assets/about-tagline-products.png" alt="C-Lingo AIOS Tablet" width="520" height="390">
-          </div>
-          <div class="about-tagline-card-content">
-            <div class="about-tagline-eyebrow">
-              <span class="about-tagline-eyebrow-main">Chinese Learning Tablet T1</span>
-              <span class="about-tagline-eyebrow-sub">C-Lingo AIOS v2.0</span>
+        <div class="about-tagline-card about-tagline-card--keywords">
+          <div class="keywords-scene" aria-label="C-Lingo AIOS">
+            <div class="logo-ripple" aria-hidden="true"></div>
+            <div class="glass-logo-wrap">
+              <img class="glass-logo" src="assets/glass-logo-3d.png?v=2" alt="C-Lingo AIOS">
             </div>
+            <div class="logo-shadow" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED VIDEO -->
+  <section class="section-full home-video-section">
+    <div class="home-video-inner">
+      <div class="home-video-header animate-in">
+        <div class="hero-label">Product Showcase</div>
+        <h2>See C-Lingo in <em>Action</em></h2>
+        <p>From AI-guided lessons to real-world Chinese use — watch how Connected Learning brings tablet, ScanPen, and everyday practice into one ecosystem.</p>
+      </div>
+      <div class="home-video-frame animate-in" style="transition-delay:0.1s">
+        <div class="home-video-embed">
+          <iframe src="https://www.youtube.com/embed/5LZ9rbxc3V0?rel=0" title="C-Lingo product showcase" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS PREVIEW -->
+  <section class="section-full products-section">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div class="section-header animate-in" style="display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="eyebrow">Products</div>
+          <h2 class="section-title">The World's First AI-Powered Chinese Learning Ecosystem</h2>
+          <p class="section-sub">Discover the tools that make Chinese learning smarter, more effective, and applicable in real life.</p>
+        </div>
+        <a class="btn-outline" onclick="goTo('products')" style="flex-shrink:0; margin-left:40px;">View All →</a>
+      </div>
+
+      <div class="products-grid animate-in" style="transition-delay:0.1s">
+        <div class="product-card" onclick="goTo('products')">
+          <div class="product-card-visual product-visual-tablet">
+            <img src="assets/product-tablet.png" alt="C-Lingo AI Learning Tablet">
+            <button class="product-video-play" type="button" data-youtube-id="n4txo0m0ntg" aria-label="Watch AI Learning Tablet video" onclick="event.stopPropagation()">
+              <span class="testimonial-play" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="product-card-body">
+            <div class="eyebrow-accent">AI Learning Tablet</div>
+            <h3>The smarter way to master Chinese.</h3>
+            <p>Learn 60% faster with structured lessons, AI guidance, and real-world practice.</p>
+            <div class="feature-tags">
+              <span class="feature-tag">AI Tutor</span>
+              <span class="feature-tag">HSK 3.0</span>
+              <span class="feature-tag">Gamified</span>
+              <span class="feature-tag">Online+Offline</span>
+            </div>
+          <a class="btn-dark" onclick="event.stopPropagation(); goTo('product-tablet')">Explore Tablet →</a>
+          </div>
+        </div>
+        <div class="product-card" onclick="goTo('products')">
+          <div class="product-card-visual product-visual-pen">
+            <img src="assets/product-scanpen-card.png" alt="C-Lingo Chinese Learning ScanPen">
+            <button class="product-video-play" type="button" data-youtube-id="KYsHXcrEqd4" aria-label="Watch Chinese Learning ScanPen video" onclick="event.stopPropagation()">
+              <span class="testimonial-play" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="product-card-body">
+            <div class="eyebrow-accent">Chinese Learning ScanPen</div>
+            <h3>Master Chinese in the palm of your hand.</h3>
+            <p>A complete system integrating HSK, textbook, and AI-powered learning.</p>
+            <div class="feature-tags">
+              <span class="feature-tag">HSK 3.0</span>
+              <span class="feature-tag">AI Speaking</span>
+              <span class="feature-tag">Offline</span>
+              <span class="feature-tag">Portable</span>
+            </div>
+          <a class="btn-dark" onclick="event.stopPropagation(); goTo('product-scanpen')">Explore ScanPen →</a>
           </div>
         </div>
       </div>
@@ -2334,57 +2883,6 @@ footer {
         <div class="outcome-tag">Connection</div>
         <h3>Learning that<br>transfers.</h3>
         <p>Link knowledge, practice, and real-life use, turning learning into practical skills that last.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTS PREVIEW -->
-  <section class="section-full products-section">
-    <div style="max-width:1200px; margin:0 auto;">
-      <div class="section-header animate-in" style="display:flex; justify-content:space-between; align-items:flex-end;">
-        <div>
-          <div class="eyebrow">Products</div>
-          <h2 class="section-title">The World's First AI-Powered Chinese Learning Ecosystem</h2>
-          <p class="section-sub">Discover the tools that make Chinese learning smarter, more effective, and applicable in real life.</p>
-        </div>
-        <a class="btn-outline" onclick="goTo('products')" style="flex-shrink:0; margin-left:40px;">View All →</a>
-      </div>
-
-      <div class="products-grid animate-in" style="transition-delay:0.1s">
-        <div class="product-card" onclick="goTo('products')">
-          <div class="product-card-visual product-visual-tablet">
-            <img src="assets/product-tablet.png" alt="C-Lingo AI Learning Tablet">
-          </div>
-          <div class="product-card-body">
-            <div class="eyebrow-accent">AI Learning Tablet</div>
-            <h3>The smarter way to master Chinese.</h3>
-            <p>Learn 60% faster with structured lessons, AI guidance, and real-world practice.</p>
-            <div class="feature-tags">
-              <span class="feature-tag">AI Tutor</span>
-              <span class="feature-tag">HSK 3.0</span>
-              <span class="feature-tag">Gamified</span>
-              <span class="feature-tag">Online+Offline</span>
-            </div>
-          <a class="btn-dark" onclick="event.stopPropagation(); goTo('product-tablet')">Explore Tablet →</a>
-          </div>
-        </div>
-        <div class="product-card" onclick="goTo('products')">
-          <div class="product-card-visual product-visual-pen">
-            <img src="assets/product-scanpen-card.png" alt="C-Lingo Chinese Learning ScanPen">
-          </div>
-          <div class="product-card-body">
-            <div class="eyebrow-accent">Chinese Learning ScanPen</div>
-            <h3>Master Chinese in the palm of your hand.</h3>
-            <p>A complete system integrating HSK, textbook, and AI-powered learning.</p>
-            <div class="feature-tags">
-              <span class="feature-tag">HSK 3.0</span>
-              <span class="feature-tag">AI Speaking</span>
-              <span class="feature-tag">Offline</span>
-              <span class="feature-tag">Portable</span>
-            </div>
-          <a class="btn-dark" onclick="event.stopPropagation(); goTo('product-scanpen')">Explore ScanPen →</a>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -2558,32 +3056,116 @@ footer {
   </section>
 
   <!-- FOUR CONNECTIONS -->
-  <section class="section-full" style="background: var(--bg);">
-    <div style="max-width:1200px; margin:0 auto;">
+  <section class="section-full method-framework-section">
+    <div class="method-framework-inner">
       <div class="section-header-centered animate-in">
         <div class="eyebrow">Framework</div>
         <h2 class="section-title">Four Core Connections</h2>
+        <p class="section-sub">AI connects learner data, structured content, smart devices, and real-world application into one continuous learning system.</p>
       </div>
-      <div class="four-connections animate-in" style="transition-delay:0.1s">
-        <div class="conn-card">
-          <div class="conn-number">01</div>
-          <h3>Learner ↔ Learning Path</h3>
-          <p>Learning adapts dynamically to each learner's ability, pace, and progress. The system continuously recalibrates what to teach next, how fast to move, and where to reinforce.</p>
+
+      <div class="method-framework-stage animate-in" style="transition-delay:0.1s">
+        <div class="framework-map-card" aria-label="AI-powered connected learning framework">
+          <div class="framework-map">
+            <svg class="framework-diagram" viewBox="-80 0 1160 740" role="img" aria-labelledby="frameworkDiagramTitle">
+              <title id="frameworkDiagramTitle">Four Core Connections — AI-Powered learning framework</title>
+              <defs>
+                <linearGradient id="fcGreenBand" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0A6A50" stop-opacity="0.42"/>
+                  <stop offset="100%" stop-color="#13B982" stop-opacity="0.62"/>
+                </linearGradient>
+                <linearGradient id="fcGoldBand" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#D4B45A" stop-opacity="0.38"/>
+                  <stop offset="100%" stop-color="#B8923F" stop-opacity="0.58"/>
+                </linearGradient>
+                <linearGradient id="fcTextGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#007A58"/>
+                  <stop offset="100%" stop-color="#C8D747"/>
+                </linearGradient>
+                <linearGradient id="fcIconGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#007A58"/>
+                  <stop offset="100%" stop-color="#C8D747"/>
+                </linearGradient>
+                <filter id="fcNodeShadow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#006D50" flood-opacity="0.14"/>
+                </filter>
+              </defs>
+
+              <!-- node-to-node curved bands -->
+              <path d="M 95 360 C 250 360, 400 180, 500 125" fill="none" stroke="url(#fcGreenBand)" stroke-width="54" stroke-linecap="round"/>
+              <path d="M 500 125 C 600 180, 750 360, 905 360" fill="none" stroke="url(#fcGoldBand)" stroke-width="54" stroke-linecap="round"/>
+              <path d="M 905 360 C 750 360, 600 540, 500 595" fill="none" stroke="url(#fcGreenBand)" stroke-width="54" stroke-linecap="round"/>
+              <path d="M 500 595 C 400 540, 250 360, 95 360" fill="none" stroke="url(#fcGoldBand)" stroke-width="54" stroke-linecap="round"/>
+
+              <text x="500" y="372" text-anchor="middle" class="fc-center-text" fill="url(#fcTextGrad)">AI-Powered</text>
+
+              <circle cx="500" cy="125" r="62" fill="#FFFFFF" filter="url(#fcNodeShadow)"/>
+              <circle cx="905" cy="360" r="62" fill="#FFFFFF" filter="url(#fcNodeShadow)"/>
+              <circle cx="500" cy="595" r="62" fill="#FFFFFF" filter="url(#fcNodeShadow)"/>
+              <circle cx="95" cy="360" r="62" fill="#FFFFFF" filter="url(#fcNodeShadow)"/>
+
+              <g transform="translate(500,125)">
+                <image class="fc-node-icon" href="assets/framework-icon-learner.png" x="-37" y="-37" width="74" height="74" preserveAspectRatio="xMidYMid meet"/>
+              </g>
+              <g transform="translate(905,360)">
+                <image class="fc-node-icon" href="assets/framework-icon-content.png" x="-37" y="-37" width="74" height="74" preserveAspectRatio="xMidYMid meet"/>
+              </g>
+              <g transform="translate(95,360)">
+                <image class="fc-node-icon" href="assets/framework-icon-learning.png" x="-37" y="-37" width="74" height="74" preserveAspectRatio="xMidYMid meet"/>
+              </g>
+
+              <!-- Devices icon -->
+              <g transform="translate(500,595)" stroke="url(#fcIconGrad)" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="-26" y="-20" width="52" height="34" rx="3"/>
+                <path d="M-10 14 L-14 26 H14 L10 14"/>
+                <path d="M-20 26 H20"/>
+                <rect x="6" y="-2" width="24" height="32" rx="3" fill="#FFFFFF"/>
+                <circle cx="18" cy="24" r="1.5" fill="url(#fcIconGrad)" stroke="none"/>
+                <rect x="-30" y="6" width="16" height="24" rx="2" fill="#FFFFFF"/>
+                <circle cx="-22" cy="24" r="1" fill="url(#fcIconGrad)" stroke="none"/>
+              </g>
+
+              <text x="500" y="24" text-anchor="middle" class="fc-label">
+                <tspan class="fc-label-strong" x="500" dy="0">Learner</tspan>
+                <tspan class="fc-label-dash" x="500" dy="24">Learning Path</tspan>
+              </text>
+              <text x="905" y="448" text-anchor="middle" class="fc-label">
+                <tspan class="fc-label-strong" x="905" dy="0">Content</tspan>
+                <tspan class="fc-label-dash" x="905" dy="24">Knowledge Structure</tspan>
+              </text>
+              <text x="500" y="694" text-anchor="middle" class="fc-label">
+                <tspan class="fc-label-strong" x="500" dy="0">Devices</tspan>
+                <tspan class="fc-label-dash" x="500" dy="24">Learning Scenarios</tspan>
+              </text>
+              <text x="95" y="448" text-anchor="middle" class="fc-label">
+                <tspan class="fc-label-strong" x="95" dy="0">Learning</tspan>
+                <tspan class="fc-label-dash" x="95" dy="24">Real-world Application</tspan>
+              </text>
+            </svg>
+          </div>
         </div>
-        <div class="conn-card">
-          <div class="conn-number">02</div>
-          <h3>Content ↔ Knowledge Structure</h3>
-          <p>Knowledge is structured through a Knowledge Graph, making learning coherent and cumulative. Every concept connects to what came before and what comes next.</p>
-        </div>
-        <div class="conn-card">
-          <div class="conn-number">03</div>
-          <h3>Devices ↔ Learning Scenarios</h3>
-          <p>Intelligent devices enable seamless learning across focused study and real-world moments. Learning doesn't stop when you leave your desk.</p>
-        </div>
-        <div class="conn-card">
-          <div class="conn-number">04</div>
-          <h3>Learning ↔ Real-world Application</h3>
-          <p>Learning translates into real-world usage and communication ability. The goal is not to pass a test, but to use the language in life.</p>
+
+        <div class="four-connections">
+          <div class="conn-card">
+            <div class="conn-number">01</div>
+            <h3>Learner ↔ Learning Path</h3>
+            <p>Learning adapts dynamically to each learner's ability, pace, and progress.</p>
+          </div>
+          <div class="conn-card">
+            <div class="conn-number">02</div>
+            <h3>Content ↔ Knowledge Structure</h3>
+            <p>Knowledge is structured through a Knowledge Graph, making learning coherent and cumulative.</p>
+          </div>
+          <div class="conn-card">
+            <div class="conn-number">03</div>
+            <h3>Devices ↔ Learning Scenarios</h3>
+            <p>Smart devices connect focused study with learning moments in real life.</p>
+          </div>
+          <div class="conn-card">
+            <div class="conn-number">04</div>
+            <h3>Learning ↔ Real-world Application</h3>
+            <p>Learning translates into communication ability, not just test performance.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -2785,7 +3367,13 @@ footer {
             <span class="feature-tag">Offline Support</span>
             <span class="feature-tag">Built for Global Learners</span>
           </div>
-          <a class="btn-dark" onclick="goTo('product-tablet')">Explore Tablet →</a>
+          <div class="product-full-actions">
+            <button class="product-video-intro" type="button" data-youtube-id="n4txo0m0ntg" aria-label="Watch AI Learning Tablet intro video">
+              <span class="product-video-intro-icon" aria-hidden="true"></span>
+              Intro
+            </button>
+            <a class="btn-dark" onclick="goTo('product-tablet')">Explore Tablet →</a>
+          </div>
         </div>
       </div>
     </div>
@@ -2811,7 +3399,13 @@ footer {
             <span class="feature-tag">AI Speaking Coach</span>
             <span class="feature-tag">Trusted Textbooks</span>
           </div>
-          <a class="btn-dark" onclick="goTo('product-scanpen')">Explore ScanPen →</a>
+          <div class="product-full-actions">
+            <button class="product-video-intro" type="button" data-youtube-id="KYsHXcrEqd4" aria-label="Watch Chinese Learning ScanPen intro video">
+              <span class="product-video-intro-icon" aria-hidden="true"></span>
+              Intro
+            </button>
+            <a class="btn-dark" onclick="goTo('product-scanpen')">Explore ScanPen →</a>
+          </div>
         </div>
       </div>
     </div>
@@ -2881,9 +3475,9 @@ footer {
 <!-- ══════════════════════════════════════ PRODUCT: TABLET ══════════════════════════════════════ -->
 <div class="page" id="page-product-tablet">
 
+  <button class="article-back" type="button" onclick="goTo('products')">← Back to Products</button>
   <div class="product-detail-hero">
     <div class="product-detail-hero-inner animate-in">
-      <button class="article-back" type="button" onclick="goTo('products')">← Back to Products</button>
       <div class="eyebrow-accent">AI Chinese Learning Tablet</div>
       <h1>The smarter way to master Chinese.</h1>
       <p class="product-detail-lead">The world's first AI-powered Chinese learning tablet.</p>
@@ -2925,9 +3519,9 @@ footer {
 <!-- ══════════════════════════════════════ PRODUCT: SCANPEN ══════════════════════════════════════ -->
 <div class="page" id="page-product-scanpen">
 
+  <button class="article-back" type="button" onclick="goTo('products')">← Back to Products</button>
   <div class="product-detail-hero">
     <div class="product-detail-hero-inner animate-in">
-      <button class="article-back" type="button" onclick="goTo('products')">← Back to Products</button>
       <div class="eyebrow-accent">Chinese Learning ScanPen</div>
       <h1>Master Chinese in the palm of your hand.</h1>
       <p class="product-detail-lead">The world's first offline-first Chinese learning scan pen.</p>
@@ -3018,8 +3612,8 @@ footer {
   <section class="section-full" style="background:var(--dark-bg); padding:80px 40px;">
     <div style="max-width:800px; margin:0 auto; text-align:center;">
       <div class="animate-in">
-        <p class="about-manifesto">We learn in fragments.<br><span>But language is never used in fragments.</span><br>That's the problem.</p>
-        <p class="about-problem-sub">Language learning is changing.<br>C-Lingo is redefining how it works with AI.</p>
+        <p class="about-problem-sub">We learn in fragments.<br><span>But language is never used in fragments.</span><br>That's the problem.</p>
+        <p class="about-manifesto">Language learning is changing.<br><span class="about-manifesto-logo-wrap"><img class="about-manifesto-logo" src="assets/c-lingo-logo-footer.png" alt="C-Lingo AIOS"></span> is redefining how it works with AI.</p>
       </div>
     </div>
   </section>
@@ -3027,7 +3621,7 @@ footer {
   <!-- BRAND KEYWORDS -->
   <section class="keywords-section">
     <div class="keywords-scene animate-in" aria-label="This is why we created C-Lingo: Clarity, Confidence, and Connection">
-      <div class="keywords-kicker">AI-powered learning for</div>
+      <div class="keywords-kicker">Brand Keywords</div>
       <h2 class="keywords-headline">This is why <span class="warm">we</span> created C-Lingo.</h2>
 
       <div class="logo-ripple" aria-hidden="true"></div>
@@ -3058,7 +3652,7 @@ footer {
     <div class="belief-inner">
       <div class="animate-in">
         <div class="eyebrow" style="margin-bottom:16px;">Brand Story</div>
-        <h2 class="belief-left">We didn't start with a business opportunity. <em>We started with a belief.</em></h2>
+        <h2 class="belief-left">We didn't start with<br>a business opportunity.<br><em>We started with a belief.</em></h2>
       </div>
       <div class="animate-in" style="transition-delay:0.15s;">
         <p style="font-size:16px; color:var(--ink-secondary); line-height:1.8; font-weight:300;">Language learning can work better.<br>Language is more than a skill.<br>It connects people to bigger worlds.</p>
@@ -3096,7 +3690,7 @@ footer {
     <div class="brand-inner">
       <div class="section-header animate-in">
         <div class="eyebrow">Brand Positioning</div>
-        <h2 class="section-title">Beyond Language. To Bigger Worlds.</h2>
+        <h2 class="section-title">Leading Partner</h2>
       </div>
       <div class="brand-positioning animate-in" style="transition-delay:0.1s">
         <h3>C-Lingo is a leading partner in the language learning revolution.</h3>
@@ -3130,11 +3724,11 @@ footer {
       <div class="vision-grid animate-in" style="transition-delay:0.1s">
         <div class="vision-block">
           <h3>Vision</h3>
-          <p>Our vision is to pioneer a new era of language learning, because every language connects to a bigger world. It is a world where barriers dissolve, cultures connect, and everyone becomes an explorer of both the world and their own potential.</p>
+          <p>Our vision is to pioneer a new era of language learning,<br>because every language connects to a bigger world.<br><br>It is a world where barriers dissolve, cultures connect,<br>and everyone becomes an explorer of both the world and their own potential.</p>
         </div>
         <div class="vision-block">
           <h3>Mission</h3>
-          <p>We empower every learner to become a world explorer. We enable every educator to develop explorers. We build a global community where language connects worlds.</p>
+          <p>We empower every learner to become a world explorer.<br><br>We enable every educator to develop explorers.<br><br>We build a global community where language connects worlds.</p>
         </div>
       </div>
     </div>
@@ -3178,6 +3772,12 @@ footer {
       <div class="eyebrow-accent" style="margin-bottom:20px;">Brand Personality</div>
       <h2>C-Lingo is <em>The Explorer.</em></h2>
       <p>C-Lingo is not just a learning platform. It is an Explorer that grows with learners. Curious about the world. Open to different cultures. Driven by growth and discovery.</p>
+      <div class="about-slogan-banner">
+        <div class="about-slogan-glow" aria-hidden="true"></div>
+        <h2 class="about-slogan-headline" aria-label="Beyond Language. To Bigger Worlds.">
+          Bey<span class="slogan-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="about-slogan-star-grad" x1="4" y1="2" x2="20" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F6C83A"/><stop offset="1" stop-color="#B9FF5A"/></linearGradient></defs><path fill="url(#about-slogan-star-grad)" d="M12 2C13.15 8.08 15.92 10.85 22 12C15.92 13.15 13.15 15.92 12 22C10.85 15.92 8.08 13.15 2 12C8.08 10.85 10.85 8.08 12 2Z"/></svg></span>nd Language. To Bigger W<span class="slogan-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="about-slogan-globe-grad" x1="9" y1="8" x2="40" y2="42" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#7AE8A8"/><stop offset="0.55" stop-color="#B9FF5A"/><stop offset="1" stop-color="#F4D554"/></linearGradient></defs><g stroke="url(#about-slogan-globe-grad)" stroke-width="4"><circle cx="24" cy="24" r="20"/><path d="M24 4v40"/><path d="M5 24h38"/><path d="M13 8.4c5.8 2.7 16.2 2.7 22 0"/><path d="M13 39.6c5.8-2.7 16.2-2.7 22 0"/><path d="M18.5 5.8c-5.6 10.8-5.6 25.6 0 36.4"/><path d="M29.5 5.8c5.6 10.8 5.6 25.6 0 36.4"/></g></svg></span>rlds.
+        </h2>
+      </div>
     </div>
   </div>
 
@@ -3376,9 +3976,9 @@ footer {
 <!-- ══════════════════════════════════════ NEWS ARTICLE ══════════════════════════════════════ -->
 <div class="page" id="page-news-article">
 
+  <button class="article-back" type="button" onclick="goTo('news')">← Back to News</button>
   <div class="article-hero">
     <div class="article-hero-inner animate-in">
-      <button class="article-back" type="button" onclick="goTo('news')">← Back to News</button>
       <div class="news-date">May 23, 2026 · Press Release</div>
       <h1>NSK Debuts C-Lingo: A New Era of AI-Powered Chinese Language Learning</h1>
     </div>
@@ -3420,9 +4020,9 @@ footer {
 <!-- ══════════════════════════════════════ NEWS ARTICLE: VALUES ══════════════════════════════════════ -->
 <div class="page" id="page-news-article-values">
 
+  <button class="article-back" type="button" onclick="goTo('news')">← Back to News</button>
   <div class="article-hero">
     <div class="article-hero-inner animate-in">
-      <button class="article-back" type="button" onclick="goTo('news')">← Back to News</button>
       <div class="news-date">April 2026</div>
       <h1>Clarity. Confidence. Connection.</h1>
     </div>
@@ -3500,9 +4100,9 @@ footer {
 <!-- ══════════════════════════════════════ NEWS ARTICLE: VIETNAM ══════════════════════════════════════ -->
 <div class="page" id="page-news-article-vietnam">
 
+  <button class="article-back" type="button" onclick="goTo('news')">← Back to News</button>
   <div class="article-hero">
     <div class="article-hero-inner animate-in">
-      <button class="article-back" type="button" onclick="goTo('news')">← Back to News</button>
       <div class="news-date">May 2026 · Event Report</div>
       <h1>NSK's C-Lingo Showcases AI-Powered Chinese Learning Solutions at Education Vietnam 2026</h1>
     </div>
@@ -3534,9 +4134,9 @@ footer {
 <!-- ══════════════════════════════════════ NEWS ARTICLE: TEAM SPOTLIGHT ══════════════════════════════════════ -->
 <div class="page" id="page-news-article-interview">
 
+  <button class="article-back" type="button" onclick="goTo('news')">← Back to News</button>
   <div class="article-hero">
     <div class="article-hero-inner animate-in">
-      <button class="article-back" type="button" onclick="goTo('news')">← Back to News</button>
       <div class="news-date">February 2026 · Team Spotlight</div>
       <h1>Beyond the Classroom: Rethinking International Chinese Education</h1>
     </div>
@@ -3581,7 +4181,7 @@ footer {
       <div class="footer-brand">
         <img class="footer-brand-logo" src="assets/c-lingo-logo-footer.png" alt="C-Lingo AIOS">
         <div class="tagline">Beyond Language. To Bigger Worlds.</div>
-        <p>C-Lingo is an AI-powered Chinese learning platform built by NSK Smart Education, redefining how language learning works with AI.</p>
+        <p>C-Lingo is an AI-powered Chinese learning platform built by HK NSK IT LIMITED, redefining how language learning works with AI.</p>
       </div>
       <div class="footer-col">
         <h5>Products</h5>
@@ -3612,7 +4212,7 @@ footer {
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 NSK Smart Education. All rights reserved.</div>
+      <div class="footer-copy">© 2026 HK NSK IT LIMITED. All rights reserved.</div>
       <div class="footer-social">
         <a class="social-link" href="https://www.youtube.com/@C-LingoAIOS" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.8 15.5V8.5L15.8 12l-6 3.5z"/></svg></a>
         <a class="social-link" href="https://www.instagram.com/clingoaios/" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 3.8A5.2 5.2 0 1 1 6.8 13a5.2 5.2 0 0 1 5.2-5.2zm0 2a3.2 3.2 0 1 0 3.2 3.2A3.2 3.2 0 0 0 12 9.8zM18.4 6.6a1.2 1.2 0 1 1-1.2 1.2 1.2 1.2 0 0 1 1.2-1.2z"/></svg></a>
@@ -3648,7 +4248,7 @@ footer {
 // Paste YouTube URL or 11-character video ID for each story.
 const USER_STORY_VIDEOS = {
   mei: 'https://youtu.be/8_ef05UxXmA',
-  bai: 'https://youtu.be/rRXpwvRc-sU',
+  bai: 'https://www.youtube.com/watch?v=FbMPVqLRRvA',
   yan: 'https://youtu.be/0xBibgupIMo'
 };
 
@@ -3702,6 +4302,13 @@ function initVideoModal() {
 
   document.querySelectorAll('.testimonial-video').forEach(btn => {
     btn.addEventListener('click', () => openModal(btn.dataset.youtubeId));
+  });
+
+  document.querySelectorAll('.product-video-play[data-youtube-id], .product-video-intro[data-youtube-id]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openModal(youtubeIdFromUrl(btn.dataset.youtubeId));
+    });
   });
 
   modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
