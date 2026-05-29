@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account — C-Lingo</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #F4FFF5; --ink: #006D50; --accent: #13B982; --surface: #fff; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; font-family: 'DM Sans', sans-serif;
+      background: var(--bg); color: #1f2937; display: flex; flex-direction: column; align-items: center;
+      padding: 24px;
+    }
+    a { color: var(--ink); }
+    .card {
+      width: 100%; max-width: 420px; background: var(--surface); border-radius: 16px;
+      padding: 32px; box-shadow: 0 4px 24px rgba(0,109,80,0.08); margin-top: 40px;
+    }
+    h1 { margin: 0 0 8px; font-size: 1.5rem; color: var(--ink); }
+    p.sub { margin: 0 0 24px; color: #6b7280; font-size: 0.95rem; }
+    label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
+    input {
+      width: 100%; padding: 12px 14px; border: 1px solid #e5e7eb; border-radius: 10px;
+      font-size: 1rem; margin-bottom: 16px;
+    }
+    button {
+      width: 100%; padding: 14px; border: none; border-radius: 10px; font-weight: 700;
+      font-size: 1rem; cursor: pointer; margin-bottom: 10px;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-secondary { background: #f3f4f6; color: #374151; }
+    .msg { padding: 10px 12px; border-radius: 8px; font-size: 0.9rem; margin-bottom: 16px; }
+    .msg.err { background: #fef2f2; color: #b91c1c; }
+    .msg.ok { background: #ecfdf5; color: #047857; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 24px; }
+    .tabs button { flex: 1; margin: 0; background: #f3f4f6; }
+    .tabs button.active { background: var(--ink); color: #fff; }
+    #logged-in { display: none; text-align: center; }
+  </style>
+  <script src="js/api-config.js"></script>
+  <script src="js/clingo-api.js"></script>
+</head>
+<body>
+  <a href="/">← Back to C-Lingo</a>
+
+  <div class="card" id="auth-form">
+    <h1>Account</h1>
+    <p class="sub">Sign in for HSK practice and feedback on clingoaios.com</p>
+    <div class="tabs">
+      <button type="button" class="active" id="tab-login">Login</button>
+      <button type="button" id="tab-register">Register</button>
+    </div>
+    <div id="message"></div>
+    <label for="username">Username</label>
+    <input id="username" type="text" autocomplete="username" minlength="3" />
+    <label for="password">Password</label>
+    <input id="password" type="password" autocomplete="current-password" minlength="6" />
+    <button type="button" class="btn-primary" id="submit-btn">Login</button>
+    <a href="feedback.html" style="display:block;text-align:center;margin-top:12px;">Submit feedback →</a>
+  </div>
+
+  <div class="card" id="logged-in">
+    <h1>Welcome, <span id="user-name"></span></h1>
+    <p class="sub">You are signed in.</p>
+    <button type="button" class="btn-primary" onclick="location.href='feedback.html'">Submit feedback</button>
+    <button type="button" class="btn-secondary" id="logout-btn">Log out</button>
+  </div>
+
+  <script>
+    var mode = 'login';
+    var tabLogin = document.getElementById('tab-login');
+    var tabRegister = document.getElementById('tab-register');
+    var submitBtn = document.getElementById('submit-btn');
+    var msgEl = document.getElementById('message');
+
+    function showMsg(text, ok) {
+      msgEl.className = 'msg ' + (ok ? 'ok' : 'err');
+      msgEl.textContent = text;
+    }
+
+    function showLoggedIn(name) {
+      document.getElementById('auth-form').style.display = 'none';
+      document.getElementById('logged-in').style.display = 'block';
+      document.getElementById('user-name').textContent = name;
+    }
+
+    if (ClingoApi.getToken()) {
+      showLoggedIn(localStorage.getItem('clingo-web-username') || 'User');
+    }
+
+    tabLogin.onclick = function () {
+      mode = 'login';
+      tabLogin.classList.add('active');
+      tabRegister.classList.remove('active');
+      submitBtn.textContent = 'Login';
+    };
+    tabRegister.onclick = function () {
+      mode = 'register';
+      tabRegister.classList.add('active');
+      tabLogin.classList.remove('active');
+      submitBtn.textContent = 'Register';
+    };
+
+    submitBtn.onclick = async function () {
+      var u = document.getElementById('username').value.trim();
+      var p = document.getElementById('password').value;
+      if (u.length < 3 || p.length < 6) {
+        showMsg('Username ≥3 chars, password ≥6 chars', false);
+        return;
+      }
+      submitBtn.disabled = true;
+      try {
+        if (mode === 'register') {
+          await ClingoApi.register(u, p);
+          showMsg('Registered! Please login.', true);
+          tabLogin.click();
+        } else {
+          var user = await ClingoApi.login(u, p);
+          localStorage.setItem('clingo-web-username', user.username);
+          showLoggedIn(user.username);
+        }
+      } catch (e) {
+        showMsg(e.message || 'Failed', false);
+      } finally {
+        submitBtn.disabled = false;
+      }
+    };
+
+    document.getElementById('logout-btn').onclick = function () {
+      ClingoApi.setToken(null);
+      localStorage.removeItem('clingo-web-username');
+      location.reload();
+    };
+  </script>
+</body>
+</html>
