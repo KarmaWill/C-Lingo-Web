@@ -9,6 +9,7 @@ C-Lingo 品牌官网静态站点 — *Beyond Language. To Bigger Worlds.*
 ```
 C-Lingo官网/
 ├── index.html              # 生产入口（部署用这个）
+├── Web v3.0.html           # v3.3 版本检查点（当前里程碑快照）
 ├── Web v2.0.html           # 开发同步副本（与 index.html 保持一致）
 ├── Web v1.0.html           # 历史版本（仅供参考）
 ├── vercel.json             # Vercel 重定向 + SPA rewrite
@@ -100,7 +101,7 @@ C-Lingo官网/
 - 活动页：`https://你的项目名.vercel.app/experience`
 - 自定义域名：在 Vercel 项目 **Settings → Domains** 中绑定
 
-`vercel.json` 已将 `/Web v2.0.html` 等旧路径永久重定向到 `/`。
+`vercel.json` 已将 `/Web v2.0.html`、`/Web v3.0.html` 等旧路径永久重定向到 `/`。
 
 ### 其他静态托管
 
@@ -154,6 +155,7 @@ C-Lingo官网/
 ## 开发约定
 
 - 功能改动请**同时更新** `index.html` 与 `Web v2.0.html`
+- **`Web v3.0.html`** 为 **v3.3 里程碑检查点**，仅在发布节点更新，日常开发勿改
 - 活动页文案在 `js/experience-page.js`，路由逻辑在 `js/router.js`
 - 线上入口为 `index.html`（路径 `/`）
 - 通用资源放在 `assets/`，平板详情长图放在 `Product Details/`
