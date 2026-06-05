@@ -4362,7 +4362,7 @@ a.exp-apply-mark:hover {
         </div>
         <a class="btn-outline" onclick="goTo('news')" style="flex-shrink:0; margin-left:40px;">All News →</a>
       </div>
-      <div class="more-news-grid animate-in" style="transition-delay:0.1s">
+      <div class="more-news-grid animate-in" id="home-news-grid" style="transition-delay:0.1s">
         <div class="news-card" onclick="goTo('news-article')">
           <div class="news-card-img">
             <img class="launch-reveal-img" data-src-before="assets/news-product-matrix.png" data-src-after="assets/news-launch-event.png" data-alt-before="C-Lingo AI Chinese Learning Product Matrix" data-alt-after="C-Lingo AIOS Global Launch event" src="assets/news-product-matrix.png" alt="C-Lingo AI Chinese Learning Product Matrix">
@@ -4417,12 +4417,12 @@ a.exp-apply-mark:hover {
     <div class="slogan-banner-glow" aria-hidden="true"></div>
     <div class="slogan-banner-inner animate-in">
       <div class="slogan-banner-logo">
-        <img src="assets/c-lingo-logo-nav.png" alt="C-Lingo AIOS">
+        <img id="home-slogan-logo" src="assets/c-lingo-logo-nav.png" alt="C-Lingo AIOS">
       </div>
       <h2 class="slogan-banner-headline" aria-label="Beyond Language. To Bigger Worlds.">
-        Bey<span class="slogan-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="slogan-star-grad" x1="4" y1="2" x2="20" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F6C83A"/><stop offset="1" stop-color="#B9FF5A"/></linearGradient></defs><path fill="url(#slogan-star-grad)" d="M12 2C13.15 8.08 15.92 10.85 22 12C15.92 13.15 13.15 15.92 12 22C10.85 15.92 8.08 13.15 2 12C8.08 10.85 10.85 8.08 12 2Z"/></svg></span>nd Language. To Bigger W<span class="slogan-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="slogan-globe-grad" x1="9" y1="8" x2="40" y2="42" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2FB56D"/><stop offset="0.55" stop-color="#55A969"/><stop offset="1" stop-color="#F4D554"/></linearGradient></defs><g stroke="url(#slogan-globe-grad)" stroke-width="4"><circle cx="24" cy="24" r="20"/><path d="M24 4v40"/><path d="M5 24h38"/><path d="M13 8.4c5.8 2.7 16.2 2.7 22 0"/><path d="M13 39.6c5.8-2.7 16.2-2.7 22 0"/><path d="M18.5 5.8c-5.6 10.8-5.6 25.6 0 36.4"/><path d="M29.5 5.8c5.6 10.8 5.6 25.6 0 36.4"/></g></svg></span>rlds.
+        <span id="home-slogan-headline-text">Bey<span class="slogan-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="slogan-star-grad" x1="4" y1="2" x2="20" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F6C83A"/><stop offset="1" stop-color="#B9FF5A"/></linearGradient></defs><path fill="url(#slogan-star-grad)" d="M12 2C13.15 8.08 15.92 10.85 22 12C15.92 13.15 13.15 15.92 12 22C10.85 15.92 8.08 13.15 2 12C8.08 10.85 10.85 8.08 12 2Z"/></svg></span>nd Language. To Bigger W<span class="slogan-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="slogan-globe-grad" x1="9" y1="8" x2="40" y2="42" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2FB56D"/><stop offset="0.55" stop-color="#55A969"/><stop offset="1" stop-color="#F4D554"/></linearGradient></defs><g stroke="url(#slogan-globe-grad)" stroke-width="4"><circle cx="24" cy="24" r="20"/><path d="M24 4v40"/><path d="M5 24h38"/><path d="M13 8.4c5.8 2.7 16.2 2.7 22 0"/><path d="M13 39.6c5.8-2.7 16.2-2.7 22 0"/><path d="M18.5 5.8c-5.6 10.8-5.6 25.6 0 36.4"/><path d="M29.5 5.8c5.6 10.8 5.6 25.6 0 36.4"/></g></svg></span>rlds.</span>
       </h2>
-      <p class="slogan-banner-tagline">Redefining Language Learning with AI</p>
+      <p class="slogan-banner-tagline" id="home-slogan-tagline">Redefining Language Learning with AI</p>
     </div>
   </section>
 
@@ -5939,5 +5939,8 @@ window.addEventListener('scroll', () => {
   });
 });
 </script>
+<script src="js/api-config.js"></script>
+<script src="js/clingo-api.js"></script>
+<script src="js/clingo-cms.js"></script>
 </body>
 </html>

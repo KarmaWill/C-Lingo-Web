@@ -56,5 +56,14 @@
       return apiFetch('/api/products/' + (code || window.CLINGO_PRODUCT_CODE || 'hsk_web') + '/config')
         .then(function (data) { return data.configs; });
     },
+    getCmsNews: function () {
+      return apiFetch('/api/cms/news?productCode=' + (window.CLINGO_PRODUCT_CODE || 'hsk_web'))
+        .then(function (data) { return data; });
+    },
+    getCmsBanners: function (placement) {
+      var qs = '?productCode=' + (window.CLINGO_PRODUCT_CODE || 'hsk_web');
+      if (placement) qs += '&placement=' + encodeURIComponent(placement);
+      return apiFetch('/api/cms/banners' + qs).then(function (data) { return data; });
+    },
   };
 })();
