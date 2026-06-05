@@ -5,6 +5,7 @@ html
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base href="/">
 <title>C-Lingo — Beyond Language. To Bigger Worlds.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1446,11 +1447,13 @@ body.video-modal-open { overflow: hidden; }
   padding: 24px;
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: opacity 0.25s var(--transition), visibility 0.25s;
 }
 .video-modal.is-open {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 .video-modal-backdrop {
   position: absolute;

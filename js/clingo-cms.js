@@ -1,4 +1,10 @@
 (function () {
+  function resolveAssetUrl(url) {
+    if (!url) return url;
+    if (/^https?:\/\//i.test(url) || url.charAt(0) === '/') return url;
+    return '/' + String(url).replace(/^\.\//, '');
+  }
+
   function escapeHtml(value) {
     return String(value || '')
       .replace(/&/g, '&amp;')
@@ -49,7 +55,7 @@
         var slug = item.slug ? "goTo('" + item.slug.replace(/'/g, "\\'") + "')" : '';
         var onclick = slug ? ' onclick="' + slug + '"' : '';
         var img = item.imageUrl
-          ? '<img src="' + escapeHtml(item.imageUrl) + '" alt="' + escapeHtml(item.title) + '">'
+          ? '<img src="' + escapeHtml(resolveAssetUrl(item.imageUrl)) + '" alt="' + escapeHtml(item.title) + '">'
           : '';
         return (
           '<div class="news-card"' +
@@ -75,7 +81,7 @@
     var logo = document.getElementById('home-slogan-logo');
     if (headline && banner.title) headline.textContent = banner.title;
     if (tagline && banner.subtitle) tagline.textContent = banner.subtitle;
-    if (logo && banner.imageUrl) logo.src = banner.imageUrl;
+    if (logo && banner.imageUrl) logo.src = resolveAssetUrl(banner.imageUrl);
   }
 
   async function loadCmsContent() {
