@@ -1574,8 +1574,151 @@ body.video-modal-open { overflow: hidden; }
 }
 .news-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .news-card-img:has(img) { display: block; padding: 0; font-size: 0; line-height: 0; }
+.news-card-img--fit { background: #f5f8f6; }
+.news-card-img--fit img { object-fit: contain; object-position: center; }
 
 .news-card-img.tall { height: 280px; }
+
+.news-list-carousel {
+  position: relative;
+  margin-top: 32px;
+  padding: 0 58px;
+}
+.news-list-viewport {
+  min-width: 0;
+  overflow: hidden;
+  padding: 8px 0 12px;
+}
+.more-news-grid.news-list-track {
+  display: flex;
+  gap: 20px;
+  margin-top: 0;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.news-list-track .news-card {
+  flex: 0 0 calc((100% - 40px) / 3);
+}
+.news-list-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 109, 80, 0.1);
+  background: rgba(255, 255, 255, 0.96);
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(0, 70, 52, 0.12);
+  transform: translateY(-50%);
+  transition: transform 0.22s var(--transition), box-shadow 0.22s var(--transition), opacity 0.2s;
+}
+.news-list-nav--prev { left: 0; }
+.news-list-nav--next { right: 0; }
+.news-list-nav::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--accent-strong);
+  border-right: 2px solid var(--accent-strong);
+  transform: rotate(45deg);
+}
+.news-list-nav--prev::after { transform: rotate(-135deg); }
+.news-list-nav:hover:not(:disabled) {
+  box-shadow: 0 14px 34px rgba(0, 70, 52, 0.16);
+}
+.news-list-nav--prev:hover:not(:disabled) { transform: translateY(-50%) translateX(-2px); }
+.news-list-nav--next:hover:not(:disabled) { transform: translateY(-50%) translateX(2px); }
+.news-list-nav:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.news-photo-carousel {
+  position: relative;
+  height: 100%;
+  min-height: 360px;
+  overflow: hidden;
+  background: var(--dark-bg);
+}
+.news-photo-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.news-photo-slide {
+  flex: 0 0 100%;
+  height: 100%;
+  margin: 0;
+}
+.news-photo-slide img {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+  display: block;
+}
+.news-photo-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.86);
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(0, 70, 52, 0.16);
+  transform: translateY(-50%);
+  transition: transform 0.22s var(--transition), background 0.22s var(--transition), box-shadow 0.22s var(--transition);
+}
+.news-photo-nav--prev { left: 18px; }
+.news-photo-nav--next { right: 18px; }
+.news-photo-nav::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--accent-strong);
+  border-right: 2px solid var(--accent-strong);
+  transform: rotate(45deg);
+}
+.news-photo-nav--prev::after { transform: rotate(-135deg); }
+.news-photo-nav:hover {
+  background: #fff;
+  box-shadow: 0 14px 32px rgba(0, 70, 52, 0.2);
+}
+.news-photo-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 3;
+}
+.news-photo-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+.news-photo-dot.is-active { width: 22px; border-radius: 999px; background: #fff; }
 
 .news-card-body { padding: 24px; }
 .news-date { font-size: 11.5px; color: var(--ink-muted); margin-bottom: 8px; letter-spacing: 0.03em; }
@@ -2558,6 +2701,10 @@ body.video-modal-open { overflow: hidden; }
 
 .more-news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
 
+@media (max-width: 1100px) {
+  .news-list-track .news-card { flex-basis: calc((100% - 20px) / 2); }
+}
+
 /* ─── PAGE: NEWS ARTICLE ─── */
 .article-hero { background: linear-gradient(135deg, var(--dark-bg), #006D50); padding: 140px 40px 64px; position: relative; overflow: hidden; }
 .article-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 30% 50%, rgba(185, 255, 90, 0.16) 0%, transparent 60%); pointer-events: none; }
@@ -2594,6 +2741,8 @@ body.video-modal-open { overflow: hidden; }
 .article-back:active { transform: translateX(-1px); }
 
 #page-news-article .article-back,
+#page-news-article-launch .article-back,
+#page-news-article-brics .article-back,
 #page-news-article-values .article-back,
 #page-news-article-vietnam .article-back,
 #page-news-article-interview .article-back,
@@ -2610,6 +2759,8 @@ body.video-modal-open { overflow: hidden; }
 }
 
 #page-news-article .article-back:hover,
+#page-news-article-launch .article-back:hover,
+#page-news-article-brics .article-back:hover,
 #page-news-article-values .article-back:hover,
 #page-news-article-vietnam .article-back:hover,
 #page-news-article-interview .article-back:hover,
@@ -2623,6 +2774,8 @@ body.video-modal-open { overflow: hidden; }
 
 @media (max-width: 860px) {
   #page-news-article .article-back,
+  #page-news-article-launch .article-back,
+  #page-news-article-brics .article-back,
   #page-news-article-values .article-back,
   #page-news-article-vietnam .article-back,
   #page-news-article-interview .article-back,
@@ -2649,6 +2802,23 @@ body.video-modal-open { overflow: hidden; }
 .article-content li strong { color: var(--ink); font-weight: 600; }
 .article-inline-img { margin: 2em 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
 .article-inline-img img { width: 100%; display: block; aspect-ratio: 16 / 10; object-fit: contain; background: #f7faf8; }
+.article-inline-img--photo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center;
+  background: #f7faf8;
+}
+.article-photo-carousel {
+  margin: 0 0 40px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #f7faf8;
+}
+.article-photo-carousel .news-photo-carousel { min-height: 430px; }
+.article-photo-carousel .news-photo-slide img { min-height: 430px; }
 .article-quote { margin-top: 2em; padding: 28px 32px; border-left: 3px solid var(--accent); background: rgba(0,109,80,0.04); border-radius: 0 12px 12px 0; font-family: 'Instrument Serif', serif; font-size: 20px; font-style: italic; color: var(--ink); line-height: 1.5; }
 .article-video {
   margin: 0 0 2em;
@@ -2874,6 +3044,9 @@ footer {
   .reasons-grid { grid-template-columns: 1fr; }
   .proof-items { grid-template-columns: 1fr; }
   .featured-article { grid-template-columns: 1fr; }
+  .news-list-carousel { padding: 0 46px; }
+  .news-list-nav { width: 48px; height: 48px; }
+  .news-list-track .news-card { flex-basis: 100%; }
   .more-news-grid { grid-template-columns: 1fr; }
   .home-exp-promo-top { text-align: center; }
   .home-exp-promo .hero-offer-badge { margin-left: auto; margin-right: auto; }
@@ -4365,37 +4538,73 @@ a.exp-apply-mark:hover {
         </div>
         <a class="btn-outline" onclick="goTo('news')" style="flex-shrink:0; margin-left:40px;">All News →</a>
       </div>
-      <div class="more-news-grid animate-in" id="home-news-grid" style="transition-delay:0.1s">
-        <div class="news-card" onclick="goTo('news-article')">
-          <div class="news-card-img">
-            <img class="launch-reveal-img" data-src-before="assets/news-product-matrix.png" data-src-after="assets/news-launch-event.png" data-alt-before="C-Lingo AI Chinese Learning Product Matrix" data-alt-after="C-Lingo AIOS Global Launch event" src="assets/news-product-matrix.png" alt="C-Lingo AI Chinese Learning Product Matrix">
-          </div>
-          <div class="news-card-body">
-            <div class="news-date">May 23, 2026 · Press Release</div>
-            <h4>C-Lingo AIOS Launch — AI-Powered Chinese Learning Goes Global</h4>
-            <p>NSK Smart Education officially launched C-Lingo AIOS at a major global press event, introducing the world's first AI-powered Chinese learning tablet and ScanPen built on the Connected Learning system.</p>
+      <div class="news-list-carousel animate-in" data-news-list-carousel style="transition-delay:0.1s">
+        <button class="news-list-nav news-list-nav--prev" type="button" aria-label="Previous news"></button>
+        <div class="news-list-viewport">
+          <div class="more-news-grid news-list-track" id="home-news-grid" data-static-news="true">
+            <div class="news-card" onclick="goTo('news-article')">
+              <div class="news-card-img">
+                <img src="assets/news-utar-group.jpeg" alt="C-Lingo visit to Universiti Tunku Abdul Rahman">
+              </div>
+              <div class="news-card-body">
+                <div class="news-date">June 11, 2026 · University Exchange</div>
+                <h4>AI Is Opening New Possibilities for Chinese Education</h4>
+                <p>C-Lingo visited UTAR in Malaysia for an in-depth exchange on AI-powered Chinese learning, teaching applications, and future collaboration.</p>
+              </div>
+            </div>
+            <div class="news-card" onclick="goTo('news-article-brics')">
+              <div class="news-card-img">
+                <img src="assets/news-brics-tablet.jpeg" alt="C-Lingo AI Chinese Learning Tablet session at BRICS+ camp">
+              </div>
+              <div class="news-card-body">
+                <div class="news-date">June 9, 2026 · Policy &amp; Education</div>
+                <h4>Exploring a New Ecosystem for AI Chinese Education</h4>
+                <p>C-Lingo joined the BRICS+ Science and Technology Policy Practice Camp, exchanging ideas on AI education with professionals from 10 countries.</p>
+              </div>
+            </div>
+            <div class="news-card" onclick="goTo('news-article-launch')">
+              <div class="news-card-img">
+                <img src="assets/news-launch-event.png" alt="C-Lingo AIOS Global Launch event">
+              </div>
+              <div class="news-card-body">
+                <div class="news-date">May 23, 2026 · Press Release</div>
+                <h4>C-Lingo AIOS Launch — AI-Powered Chinese Learning Goes Global</h4>
+                <p>NSK Smart Education officially launched C-Lingo AIOS at a major global press event, introducing the AI-powered Chinese learning tablet and ScanPen.</p>
+              </div>
+            </div>
+            <div class="news-card" onclick="goTo('news-article-vietnam')">
+              <div class="news-card-img">
+                <img src="assets/news-education-vietnam.png" alt="C-Lingo at Education Vietnam 2026">
+              </div>
+              <div class="news-card-body">
+                <div class="news-date">May 2026</div>
+                <h4>NSK's C-Lingo Showcases AI-Powered Chinese Learning Solutions at Education Vietnam 2026</h4>
+                <p>From May 6-8, 2026, NSK presented the C-Lingo AIOS Chinese Learning Tablet and Scan Pen in Ho Chi Minh City.</p>
+              </div>
+            </div>
+            <div class="news-card" onclick="goTo('news-article-values')">
+              <div class="news-card-img">
+                <img src="assets/news-clarity-card.png" alt="Clarity, Confidence, Connection — Beyond Language. To Bigger Worlds.">
+              </div>
+              <div class="news-card-body">
+                <div class="news-date">April 2026</div>
+                <h4>Clarity. Confidence. Connection.</h4>
+                <p>These three words are the starting point of the C-Lingo language learning journey and represent the core values we consistently pursue.</p>
+              </div>
+            </div>
+            <div class="news-card" onclick="goTo('news-article-interview')">
+              <div class="news-card-img">
+                <img src="assets/news-interview-spotlight.png" alt="Beyond the Classroom — C-Lingo team spotlight">
+              </div>
+              <div class="news-card-body">
+                <div class="news-date">February 2026 · Team Spotlight</div>
+                <h4>Beyond the Classroom: Rethinking International Chinese Education</h4>
+                <p>Why language learning is about human connection, and how C-Lingo combines AI, culture, and structured learning for global learners.</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="news-card" onclick="goTo('news-article-vietnam')">
-          <div class="news-card-img">
-            <img src="assets/news-education-vietnam.png" alt="C-Lingo at Education Vietnam 2026">
-          </div>
-          <div class="news-card-body">
-            <div class="news-date">May 2026</div>
-            <h4>NSK's C-Lingo Showcases AI-Powered Chinese Learning Solutions at Education Vietnam 2026</h4>
-            <p>From May 6–8, 2026, NSK presented the C-Lingo AIOS Chinese Learning Tablet and Scan Pen at Education Vietnam 2026 in Ho Chi Minh City.</p>
-          </div>
-        </div>
-        <div class="news-card" onclick="goTo('news-article-values')">
-          <div class="news-card-img">
-            <img src="assets/news-clarity-card.png" alt="Clarity, Confidence, Connection — Beyond Language. To Bigger Worlds.">
-          </div>
-          <div class="news-card-body">
-            <div class="news-date">April 2026</div>
-            <h4>Clarity. Confidence. Connection.</h4>
-            <p>These three words are the starting point of the C-Lingo language learning journey and represent the core values we consistently pursue.</p>
-          </div>
-        </div>
+        <button class="news-list-nav news-list-nav--next" type="button" aria-label="Next news"></button>
       </div>
     </div>
   </section>
@@ -5332,56 +5541,162 @@ a.exp-apply-mark:hover {
     <div class="news-main-inner">
       <div class="featured-article animate-in">
         <div class="featured-img">
-          <img class="launch-reveal-img" data-src-before="assets/news-product-matrix.png" data-src-after="assets/news-launch-event.png" data-alt-before="C-Lingo AI Chinese Learning Product Matrix" data-alt-after="C-Lingo AIOS Global Launch event" src="assets/news-product-matrix.png" alt="C-Lingo AI Chinese Learning Product Matrix">
-          <div class="featured-badge">Launch Event</div>
+          <img src="assets/news-utar-group.jpeg" alt="C-Lingo visit to Universiti Tunku Abdul Rahman">
+          <div class="featured-badge">University Exchange</div>
         </div>
         <div class="featured-body">
-          <div class="news-date">May 23, 2026 · Press Release</div>
-          <h3>C-Lingo AIOS Launch — AI-Powered Chinese Learning Goes Global</h3>
-          <p>NSK Smart Education officially launched C-Lingo AIOS at a major global press event, introducing the world's first AI-powered Chinese learning tablet and ScanPen built on the Connected Learning system.</p>
+          <div class="news-date">June 11, 2026 · Malaysia</div>
+          <h3>AI Is Opening New Possibilities for Chinese Education</h3>
+          <p>On June 11, C-Lingo visited Universiti Tunku Abdul Rahman (UTAR) in Malaysia for an in-depth exchange on AI-powered Chinese learning, teaching applications, research collaboration, and future education initiatives.</p>
           <a class="btn-outline" style="margin-top:28px; cursor:pointer;" onclick="goTo('news-article')">Read More →</a>
         </div>
       </div>
 
-      <div class="more-news-grid animate-in" style="transition-delay:0.1s">
-        <div class="news-card" onclick="goTo('news-article-vietnam')" style="cursor:pointer;">
-          <div class="news-card-img">
-            <img src="assets/news-education-vietnam.png" alt="C-Lingo at Education Vietnam 2026">
-          </div>
-          <div class="news-card-body">
-            <div class="news-date">May 2026</div>
-            <h4>NSK's C-Lingo Showcases AI-Powered Chinese Learning Solutions at Education Vietnam 2026</h4>
-            <p>From May 6–8, 2026, NSK presented the C-Lingo AIOS Chinese Learning Tablet and Scan Pen at Education Vietnam 2026 in Ho Chi Minh City.</p>
+      <div class="news-list-carousel animate-in" data-news-list-carousel style="transition-delay:0.1s">
+        <button class="news-list-nav news-list-nav--prev" type="button" aria-label="Previous news"></button>
+        <div class="news-list-viewport">
+          <div class="more-news-grid news-list-track">
+            <div class="news-card" onclick="goTo('news-article-brics')" style="cursor:pointer;">
+              <div class="news-card-img">
+                <img src="assets/news-brics-tablet.jpeg" alt="C-Lingo AI Chinese Learning Tablet session at BRICS+ camp">
+              </div>
+              <div class="news-card-body">
+                <div class="news-date">June 9, 2026 · Policy &amp; Education</div>
+                <h4>Exploring a New Ecosystem for AI Chinese Education</h4>
+                <p>C-Lingo joined the BRICS+ Science and Technology Policy Practice Camp, exchanging ideas on AI education with professionals from 10 countries.</p>
+              </div>
+            </div>
+            <div class="news-card" onclick="goTo('news-article-launch')" style="cursor:pointer;">
+              <div class="news-card-img">
+                <img src="assets/news-launch-event.png" alt="C-Lingo AIOS Global Launch event">
+              </div>
+              <div class="news-card-body">
+                <div class="news-date">May 23, 2026 · Press Release</div>
+                <h4>C-Lingo AIOS Launch — AI-Powered Chinese Learning Goes Global</h4>
+                <p>NSK Smart Education officially launched C-Lingo AIOS at a major global press event, introducing the AI-powered Chinese learning tablet and ScanPen.</p>
+              </div>
+            </div>
+            <div class="news-card" onclick="goTo('news-article-vietnam')" style="cursor:pointer;">
+              <div class="news-card-img">
+                <img src="assets/news-education-vietnam.png" alt="C-Lingo at Education Vietnam 2026">
+              </div>
+              <div class="news-card-body">
+                <div class="news-date">May 2026</div>
+                <h4>NSK's C-Lingo Showcases AI-Powered Chinese Learning Solutions at Education Vietnam 2026</h4>
+                <p>From May 6-8, 2026, NSK presented the C-Lingo AIOS Chinese Learning Tablet and Scan Pen at Education Vietnam 2026 in Ho Chi Minh City.</p>
+              </div>
+            </div>
+            <div class="news-card" onclick="goTo('news-article-values')" style="cursor:pointer;">
+              <div class="news-card-img">
+                <img src="assets/news-clarity-card.png" alt="Clarity, Confidence, Connection — Beyond Language. To Bigger Worlds.">
+              </div>
+              <div class="news-card-body">
+                <div class="news-date">April 2026</div>
+                <h4>Clarity. Confidence. Connection.</h4>
+                <p>These three words are the starting point of the C-Lingo language learning journey and represent the core values we consistently pursue.</p>
+              </div>
+            </div>
+            <div class="news-card" onclick="goTo('news-article-interview')" style="cursor:pointer;">
+              <div class="news-card-img">
+                <img src="assets/news-interview-spotlight.png" alt="Beyond the Classroom — C-Lingo team spotlight">
+              </div>
+              <div class="news-card-body">
+                <div class="news-date">February 2026 · Team Spotlight</div>
+                <h4>Beyond the Classroom: Rethinking International Chinese Education</h4>
+                <p>Why language learning is about human connection, and how C-Lingo combines AI, culture, and structured learning for global learners.</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="news-card" onclick="goTo('news-article-values')" style="cursor:pointer;">
-          <div class="news-card-img">
-            <img src="assets/news-clarity-card.png" alt="Clarity, Confidence, Connection — Beyond Language. To Bigger Worlds.">
-          </div>
-          <div class="news-card-body">
-            <div class="news-date">April 2026</div>
-            <h4>Clarity. Confidence. Connection.</h4>
-            <p>These three words are the starting point of the C-Lingo language learning journey and represent the core values we consistently pursue.</p>
-          </div>
-        </div>
-        <div class="news-card" onclick="goTo('news-article-interview')" style="cursor:pointer;">
-          <div class="news-card-img">
-            <img src="https://img.youtube.com/vi/awcQt0DCXTc/hqdefault.jpg" alt="Beyond the Classroom — C-Lingo team spotlight">
-          </div>
-          <div class="news-card-body">
-            <div class="news-date">February 2026 · Team Spotlight</div>
-            <h4>Beyond the Classroom: Rethinking International Chinese Education</h4>
-            <p>Why language learning is about human connection—and how C-Lingo combines AI, culture, and structured learning for global learners.</p>
-          </div>
-        </div>
+        <button class="news-list-nav news-list-nav--next" type="button" aria-label="Next news"></button>
       </div>
     </div>
   </section>
 
 </div>
 
-<!-- ══════════════════════════════════════ NEWS ARTICLE ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ NEWS ARTICLE: UTAR ══════════════════════════════════════ -->
 <div class="page" id="page-news-article">
+
+  <button class="article-back" type="button" onclick="goTo('news')">← Back to News</button>
+  <div class="article-hero">
+    <div class="article-hero-inner animate-in">
+      <div class="news-date">June 11, 2026 · University Exchange</div>
+      <h1>AI Is Opening New Possibilities for Chinese Education</h1>
+    </div>
+  </div>
+
+  <section class="article-main section-full">
+    <div class="article-main-inner">
+      <figure class="article-lead-img animate-in">
+        <img src="assets/news-utar-group.jpeg" alt="C-Lingo visit to Universiti Tunku Abdul Rahman">
+      </figure>
+
+      <div class="article-content animate-in">
+        <p>AI is opening new possibilities for Chinese education.</p>
+        <p>On June 11, we visited Universiti Tunku Abdul Rahman (UTAR) in Malaysia for an in-depth exchange on AI-powered Chinese learning, teaching applications, research collaboration, and future education initiatives.</p>
+        <p>Founded in 2002, UTAR is a non-profit comprehensive university known for its focus on holistic education, research, industry collaboration, and social responsibility. This made our discussion especially meaningful as we explored how AI can support real teaching needs and broader education impact.</p>
+
+        <h2>Exploring Practical AI-Powered Learning Scenarios</h2>
+        <p>During the discussion, we introduced C-Lingo, our AI-powered language learning brand, and shared how AI tools, structured content, intelligent devices, and real learning scenarios can work together to support more efficient, continuous, and applicable Chinese learning.</p>
+        <figure class="article-inline-img article-inline-img--photo">
+          <img src="assets/news-utar-presentation.jpeg" alt="C-Lingo presentation on AI-powered Chinese learning at UTAR">
+        </figure>
+        <p>Moving forward, we will continue to explore collaboration with UTAR in several directions, including product pilot programs in teaching scenarios, research and consulting projects on AI-powered Chinese education, localized learning needs, student practice, entrepreneurship support, and Sinology-related resource development.</p>
+
+        <p class="article-quote">This exchange marks an important step as we continue exploring how AI can empower Chinese education, support teachers, improve learning efficiency, and make quality learning resources more accessible to learners in Malaysia and beyond.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ══════════════════════════════════════ NEWS ARTICLE: BRICS+ ══════════════════════════════════════ -->
+<div class="page" id="page-news-article-brics">
+
+  <button class="article-back" type="button" onclick="goTo('news')">← Back to News</button>
+  <div class="article-hero">
+    <div class="article-hero-inner animate-in">
+      <div class="news-date">June 9, 2026 · Policy &amp; Education</div>
+      <h1>Exploring a New Ecosystem for AI Chinese Education</h1>
+    </div>
+  </div>
+
+  <section class="article-main section-full">
+    <div class="article-main-inner">
+      <figure class="article-lead-img article-lead-img--fit animate-in">
+        <img src="assets/news-brics-cover.png" alt="C-Lingo at the BRICS+ Science and Technology Policy Practice Camp">
+      </figure>
+
+      <div class="article-content animate-in">
+        <p>C-Lingo was honored to join the BRICS+ Science and Technology Policy Practice Camp, engaging with education, technology, and policy professionals from 10 countries to exchange ideas on AI education, international Chinese education, and global education cooperation.</p>
+
+        <h2>Sharing an Integrated AI Chinese Learning Solution</h2>
+        <p>During the &ldquo;AI Intelligent Hardware and EdTech Products&rdquo; session, we shared C-Lingo&rsquo;s exploration of an integrated AI Chinese learning solution, including our AIDEO Methodology, AI-powered learning system, and product practices across different learning scenarios.</p>
+        <figure class="article-inline-img article-inline-img--photo">
+          <img src="assets/news-brics-presentation.jpeg" alt="C-Lingo presentation at the BRICS+ Science and Technology Policy Practice Camp">
+        </figure>
+        <figure class="article-inline-img article-inline-img--photo">
+          <img src="assets/news-brics-tablet.jpeg" alt="C-Lingo AI Chinese Learning Tablet session at BRICS+ camp">
+        </figure>
+
+        <p>The feedback from the participants was highly encouraging. Many showed strong interest in C-Lingo&rsquo;s direction and asked in-depth questions about AI-powered learning, personalized learning paths, localized Chinese content, intelligent learning devices, and potential cooperation with schools, institutions, and regional partners.</p>
+
+        <p>This exchange further confirmed what we believe: global learners and institutions are looking beyond single-function tools. They are seeking systematic, localized, and sustainable Chinese learning solutions that connect teaching systems, AI capabilities, trusted content, real-world scenarios, and long-term educational services.</p>
+
+        <p>We are grateful to see C-Lingo&rsquo;s approach recognized and to hear many participants express interest in future conversations around product pilots, localized content co-development, teacher training, and educational project cooperation.</p>
+
+        <p>Starting with Chinese learning, C-Lingo will continue working with global partners to explore clearer, more effective, and more applicable learning experiences.</p>
+
+        <p class="article-quote">Beyond language. To bigger worlds.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ══════════════════════════════════════ NEWS ARTICLE: LAUNCH ══════════════════════════════════════ -->
+<div class="page" id="page-news-article-launch">
 
   <button class="article-back" type="button" onclick="goTo('news')">← Back to News</button>
   <div class="article-hero">
@@ -5393,8 +5708,8 @@ a.exp-apply-mark:hover {
 
   <section class="article-main section-full">
     <div class="article-main-inner">
-      <figure class="article-lead-img article-lead-img--fit animate-in">
-        <img class="launch-reveal-img" data-src-before="assets/news-product-matrix.png" data-src-after="assets/news-launch-event.png" data-alt-before="C-Lingo AI Chinese Learning Product Matrix" data-alt-after="C-Lingo AIOS global launch presentation" data-fit-before="true" src="assets/news-product-matrix.png" alt="C-Lingo AI Chinese Learning Product Matrix">
+      <figure class="article-lead-img animate-in">
+        <img src="assets/news-launch-event.png" alt="C-Lingo AIOS global launch event">
       </figure>
 
       <div class="article-content animate-in">
@@ -5815,6 +6130,101 @@ function initVideoModal() {
   });
 }
 
+function initNewsPhotoCarousels() {
+  document.querySelectorAll('[data-news-carousel]').forEach(carousel => {
+    const track = carousel.querySelector('.news-photo-track');
+    const slides = Array.from(carousel.querySelectorAll('.news-photo-slide'));
+    const prev = carousel.querySelector('.news-photo-nav--prev');
+    const next = carousel.querySelector('.news-photo-nav--next');
+    const dotsWrap = carousel.querySelector('.news-photo-dots');
+    if (!track || slides.length < 2) return;
+
+    let current = 0;
+    const dots = dotsWrap
+      ? slides.map((_, index) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'news-photo-dot';
+          dot.setAttribute('aria-label', `Show photo ${index + 1}`);
+          dot.addEventListener('click', event => {
+            event.stopPropagation();
+            setSlide(index);
+          });
+          dotsWrap.appendChild(dot);
+          return dot;
+        })
+      : [];
+
+    function setSlide(index) {
+      current = (index + slides.length) % slides.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((dot, dotIndex) => dot.classList.toggle('is-active', dotIndex === current));
+    }
+
+    prev?.addEventListener('click', event => {
+      event.stopPropagation();
+      setSlide(current - 1);
+    });
+    next?.addEventListener('click', event => {
+      event.stopPropagation();
+      setSlide(current + 1);
+    });
+
+    setSlide(0);
+  });
+}
+
+function initNewsListCarousels() {
+  const mqTwo = window.matchMedia('(max-width: 1100px)');
+  const mqOne = window.matchMedia('(max-width: 900px)');
+
+  document.querySelectorAll('[data-news-list-carousel]').forEach(carousel => {
+    const track = carousel.querySelector('.news-list-track');
+    const cards = Array.from(carousel.querySelectorAll('.news-card'));
+    const prev = carousel.querySelector('.news-list-nav--prev');
+    const next = carousel.querySelector('.news-list-nav--next');
+    if (!track || cards.length <= 1) return;
+
+    let current = Number(carousel.dataset.newsIndex || 0);
+
+    function visibleCount() {
+      if (mqOne.matches) return 1;
+      if (mqTwo.matches) return 2;
+      return 3;
+    }
+
+    function update(nextIndex) {
+      if (typeof nextIndex === 'number') current = nextIndex;
+      const visible = visibleCount();
+      const max = Math.max(0, cards.length - visible);
+      current = Math.max(0, Math.min(current, max));
+      carousel.dataset.newsIndex = String(current);
+      const gap = parseFloat(getComputedStyle(track).gap) || 20;
+      const step = cards[0].getBoundingClientRect().width + gap;
+      track.style.transform = `translateX(-${current * step}px)`;
+      if (prev) prev.disabled = current === 0;
+      if (next) next.disabled = current >= max;
+    }
+
+    if (prev) {
+      prev.onclick = event => {
+        event.stopPropagation();
+        update(current - 1);
+      };
+    }
+
+    if (next) {
+      next.onclick = event => {
+        event.stopPropagation();
+        update(current + 1);
+      };
+    }
+
+    window.addEventListener('resize', () => update());
+    update();
+  });
+}
+
 // ─── LAUNCH IMAGE EMBARGO ───
 function applyLaunchImageEmbargo() {
   const revealAt = new Date('2026-05-24T00:00:00+08:00');
@@ -5891,6 +6301,8 @@ applyLaunchImageEmbargo();
 initUserStoryVideos();
 initTestimonialsCarousel();
 initVideoModal();
+initNewsPhotoCarousels();
+initNewsListCarousels();
 
 // ─── WECHAT QR POPOVER ───
 (function initWechatPopover() {

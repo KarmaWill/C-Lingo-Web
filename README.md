@@ -145,7 +145,9 @@ C-Lingo官网/
 | `/partners` | `partners` | 合作伙伴 |
 | `/experience` | `experience` | **体验官活动页** |
 | `/news` | `news` | 新闻列表 |
-| `/news/launch` | `news-article` | 发布会新闻 |
+| `/news/utar` | `news-article` | UTAR AI 中文教育交流 |
+| `/news/brics` | `news-article-brics` | BRICS+ 科技政策实践营 |
+| `/news/launch` | `news-article-launch` | 发布会新闻 |
 | `/news/vietnam` | `news-article-vietnam` | Education Vietnam 2026 |
 | `/news/values` | `news-article-values` | Clarity / Confidence / Connection |
 | `/news/interview` | `news-article-interview` | Team Spotlight |

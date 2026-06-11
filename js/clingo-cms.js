@@ -48,6 +48,7 @@
   function renderNews(items) {
     var grid = document.getElementById('home-news-grid');
     if (!grid || !items || !items.length) return;
+    if (grid.dataset.staticNews === 'true') return;
 
     grid.innerHTML = items
       .slice(0, 3)
