@@ -2743,6 +2743,7 @@ body.video-modal-open { overflow: hidden; }
 #page-news-article .article-back,
 #page-news-article-launch .article-back,
 #page-news-article-brics .article-back,
+#page-news-article-hec .article-back,
 #page-news-article-values .article-back,
 #page-news-article-vietnam .article-back,
 #page-news-article-interview .article-back,
@@ -2761,6 +2762,7 @@ body.video-modal-open { overflow: hidden; }
 #page-news-article .article-back:hover,
 #page-news-article-launch .article-back:hover,
 #page-news-article-brics .article-back:hover,
+#page-news-article-hec .article-back:hover,
 #page-news-article-values .article-back:hover,
 #page-news-article-vietnam .article-back:hover,
 #page-news-article-interview .article-back:hover,
@@ -2776,6 +2778,7 @@ body.video-modal-open { overflow: hidden; }
   #page-news-article .article-back,
   #page-news-article-launch .article-back,
   #page-news-article-brics .article-back,
+  #page-news-article-hec .article-back,
   #page-news-article-values .article-back,
   #page-news-article-vietnam .article-back,
   #page-news-article-interview .article-back,
@@ -4140,7 +4143,7 @@ a.exp-apply-mark:hover {
       </ul>
     </li>
   </ul>
-  <a class="nav-cta" href="mailto:lhh@clingo.hk">Partner With Us</a>
+  <a class="nav-cta" href="mailto:partnerships@clingo.hk">Partnerships</a>
 </nav>
 
 <!-- ══════════════════════════════════════ HOME ══════════════════════════════════════ -->
@@ -4542,6 +4545,16 @@ a.exp-apply-mark:hover {
         <button class="news-list-nav news-list-nav--prev" type="button" aria-label="Previous news"></button>
         <div class="news-list-viewport">
           <div class="more-news-grid news-list-track" id="home-news-grid" data-static-news="true">
+            <div class="news-card" onclick="goTo('news-article-hec')">
+              <div class="news-card-img">
+                <img src="assets/news-hec-signing.jpeg" alt="NSK and HEC Pakistan representatives signing the MOU at the World Sinology Center in Beijing">
+              </div>
+              <div class="news-card-body">
+                <div class="news-date">July 8, 2026 · Strategic Partnership</div>
+                <h4>NSK Signs MOU with HEC Pakistan</h4>
+                <p>NSK signed a strategic MOU with Pakistan's Higher Education Commission in Beijing, advancing cooperation in AI education, international Chinese education, and smart education platforms.</p>
+              </div>
+            </div>
             <div class="news-card" onclick="goTo('news-article')">
               <div class="news-card-img">
                 <img src="assets/news-utar-group.jpeg" alt="C-Lingo visit to Universiti Tunku Abdul Rahman">
@@ -5517,8 +5530,8 @@ a.exp-apply-mark:hover {
       <div class="eyebrow-accent" style="margin-bottom:20px;">Get In Touch</div>
       <h2>Ready to partner<br>with C-Lingo?</h2>
       <p>C-Lingo helps learners move beyond learning a language, toward understanding cultures, connecting with people, and exploring new possibilities.</p>
-      <a class="contact-email" href="mailto:lhh@clingo.hk">
-        ✉️ lhh@clingo.hk
+      <a class="contact-email" href="mailto:partnerships@clingo.hk">
+        ✉️ partnerships@clingo.hk
       </a>
       <p style="margin-top:20px; font-size:13px; color:rgba(236,255,244,0.38); font-style:italic;">Beyond language. To bigger worlds.</p>
     </div>
@@ -5541,14 +5554,14 @@ a.exp-apply-mark:hover {
     <div class="news-main-inner">
       <div class="featured-article animate-in">
         <div class="featured-img">
-          <img src="assets/news-utar-group.jpeg" alt="C-Lingo visit to Universiti Tunku Abdul Rahman">
-          <div class="featured-badge">University Exchange</div>
+          <img src="assets/news-hec-signing.jpeg" alt="NSK and HEC Pakistan representatives signing the MOU at the World Sinology Center in Beijing">
+          <div class="featured-badge">Strategic Partnership</div>
         </div>
         <div class="featured-body">
-          <div class="news-date">June 11, 2026 · Malaysia</div>
-          <h3>AI Is Opening New Possibilities for Chinese Education</h3>
-          <p>On June 11, C-Lingo visited Universiti Tunku Abdul Rahman (UTAR) in Malaysia for an in-depth exchange on AI-powered Chinese learning, teaching applications, research collaboration, and future education initiatives.</p>
-          <a class="btn-outline" style="margin-top:28px; cursor:pointer;" onclick="goTo('news-article')">Read More →</a>
+          <div class="news-date">July 8, 2026 · Pakistan</div>
+          <h3>NSK Signs MOU with HEC Pakistan</h3>
+          <p>On July 8, NSK signed a Memorandum of Understanding on strategic cooperation with the Higher Education Commission of Pakistan in Beijing, focusing on AI education, international Chinese education, smart education platform development, and interdisciplinary talent cultivation.</p>
+          <a class="btn-outline" style="margin-top:28px; cursor:pointer;" onclick="goTo('news-article-hec')">Read More →</a>
         </div>
       </div>
 
@@ -5556,6 +5569,16 @@ a.exp-apply-mark:hover {
         <button class="news-list-nav news-list-nav--prev" type="button" aria-label="Previous news"></button>
         <div class="news-list-viewport">
           <div class="more-news-grid news-list-track">
+            <div class="news-card" onclick="goTo('news-article')" style="cursor:pointer;">
+              <div class="news-card-img">
+                <img src="assets/news-utar-group.jpeg" alt="C-Lingo visit to Universiti Tunku Abdul Rahman">
+              </div>
+              <div class="news-card-body">
+                <div class="news-date">June 11, 2026 · University Exchange</div>
+                <h4>AI Is Opening New Possibilities for Chinese Education</h4>
+                <p>C-Lingo visited UTAR in Malaysia for an in-depth exchange on AI-powered Chinese learning, teaching applications, and future collaboration.</p>
+              </div>
+            </div>
             <div class="news-card" onclick="goTo('news-article-brics')" style="cursor:pointer;">
               <div class="news-card-img">
                 <img src="assets/news-brics-tablet.jpeg" alt="C-Lingo AI Chinese Learning Tablet session at BRICS+ camp">
@@ -5609,6 +5632,52 @@ a.exp-apply-mark:hover {
           </div>
         </div>
         <button class="news-list-nav news-list-nav--next" type="button" aria-label="Next news"></button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ══════════════════════════════════════ NEWS ARTICLE: HEC PAKISTAN ══════════════════════════════════════ -->
+<div class="page" id="page-news-article-hec">
+
+  <button class="article-back" type="button" onclick="goTo('news')">← Back to News</button>
+  <div class="article-hero">
+    <div class="article-hero-inner animate-in">
+      <div class="news-date">July 8, 2026 · Strategic Partnership</div>
+      <h1>NSK Signs MOU with HEC Pakistan</h1>
+    </div>
+  </div>
+
+  <section class="article-main section-full">
+    <div class="article-main-inner">
+      <figure class="article-lead-img animate-in">
+        <img src="assets/news-hec-signing.jpeg" alt="NSK and HEC Pakistan representatives signing the MOU at the World Sinology Center in Beijing">
+      </figure>
+
+      <div class="article-content animate-in">
+        <p>On July 8, NSK signed a Memorandum of Understanding (MOU) on strategic cooperation with the Higher Education Commission of Pakistan in Beijing. The MOU will focus on cooperation in AI education, international Chinese language education, smart education platform development, and interdisciplinary talent cultivation. The signing marks a new stage in NSK&rsquo;s overseas business, upgrading from language learning product output to digital full-stack solution deployment.</p>
+
+        <p>Witnessed by Prof. Xu Baofeng, Dean of the College of Sinology and Chinese Studies (Belt and Road Research Institute) of Beijing Language and Culture University (BLCU) and Director of the World Sinology Center; Mr. Han Zhihua, Vice President of NSK; and Prof. Dr. Niaz Ahmad Akhtar (SI), Chairman of the Higher Education Commission of Pakistan, the MOU was signed on behalf of both parties.</p>
+
+        <p>With its core strengths in full-stack AI technology, standardized Chinese education systems, all-scenario product matrix, and scalable implementation experience, NSK can provide Pakistan with systematic and practical value support across five areas: education infrastructure, Chinese teaching system development, bilingual talent cultivation, industrial services, and people-to-people exchange.</p>
+
+        <h2>Three Key Areas of Cooperation</h2>
+        <p>The MOU will focus on three key areas:</p>
+        <ul>
+          <li><strong>Standardized international Chinese language education centers</strong> — supporting the construction of centers with an overall plan covering about 10 institutions.</li>
+          <li><strong>National Smart Education Public Service Platform</strong> — jointly developing the platform to promote education resource connectivity, high-quality course co-development, and standardized teaching system implementation.</li>
+          <li><strong>China-Pakistan cultural and educational exchange brand events</strong> — jointly building events including the International Chinese Language and Vocational Skills Competition and the National Sinology Competition of Pakistan.</li>
+        </ul>
+
+        <h2>About the Higher Education Commission of Pakistan</h2>
+        <p>The Higher Education Commission of Pakistan is the statutory and highly autonomous supreme authority of higher education at the federal level of Pakistan, with its Chairman enjoying federal ministerial status. HEC carries out core functions including higher education policy and standard formulation, institutional accreditation and quality assurance, federal funding allocation and financial management, research support, and industry-academia-research transformation. It oversees 265 higher education institutions nationwide. The MOU was signed on behalf of the Commission by its Chairman, Prof. Dr. Niaz Ahmad Akhtar (SI).</p>
+
+        <p>At present, Pakistan is accelerating cooperation with China in AI, vocational education, digital transformation, and industrial skills development. The upgrading of the China-Pakistan Economic Corridor is also driving growing demand for talents with both Chinese language proficiency and professional skills. More than 30 universities in Pakistan have opened Chinese language courses, with nearly 10,000 students learning Chinese each year. According to media reports, more than 38,000 Pakistani students are currently studying at universities in China. As Chinese learning needs expand from university classrooms to study abroad, employment, and industrial service scenarios, Pakistan&rsquo;s demand for standardized Chinese teaching systems, digital education platforms, and sustainable exchange mechanisms is becoming increasingly clear.</p>
+
+        <p>Looking ahead, NSK will continue to build on its AI education technology and the product ecosystem of its AI language learning brand C-Lingo, working with more universities, educational institutions, and partners to explore sustainable pathways for AI education technology to serve international Chinese language education, educational digitalization, and interdisciplinary talent cultivation.</p>
+
+        <p class="article-quote">Beyond language. To bigger worlds.</p>
       </div>
     </div>
   </section>
@@ -5926,7 +5995,8 @@ a.exp-apply-mark:hover {
       <div class="footer-col">
         <h5>Contact</h5>
         <ul>
-          <li><a href="mailto:lhh@clingo.hk">lhh@clingo.hk</a></li>
+          <li><a href="mailto:partnerships@clingo.hk">Partnerships</a></li>
+          <li><a href="mailto:marketing@clingo.hk">Brand &amp; Media</a></li>
           <li><a href="https://www.youtube.com/@C-LingoAIOS" target="_blank" rel="noopener noreferrer">YouTube</a></li>
           <li><a href="https://www.instagram.com/clingoaios/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
           <li><a href="https://www.linkedin.com/company/hk-nsk-it-limited/posts/?feedView=all" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
