@@ -9,6 +9,7 @@
     '/partners': 'partners',
     '/news': 'news',
     '/experience': 'experience',
+    '/hsk': 'hsk',
     '/news/hec': 'news-article-hec',
     '/news/utar': 'news-article',
     '/news/brics': 'news-article-brics',
@@ -28,6 +29,7 @@
     partners: '/partners',
     news: '/news',
     experience: '/experience',
+    hsk: '/hsk',
     'news-article-hec': '/news/hec',
     'news-article': '/news/utar',
     'news-article-brics': '/news/brics',
@@ -51,7 +53,7 @@
   }
 
   function navHighlightPage(page) {
-    if (page === 'about' || page === 'partners') return 'about';
+    if (page === 'about' || page === 'partners' || page === 'methodology') return 'about';
     if (page === 'news' || page.indexOf('news-article') === 0) return 'about';
     if (page.indexOf('product-') === 0) return 'products';
     return page;
@@ -100,6 +102,10 @@
     if (page === 'experience' && window.mountExperiencePage) {
       window.mountExperiencePage();
     }
+    if (page === 'hsk' && window.mountHskPage) {
+      window.mountHskPage();
+    }
+    document.body.classList.toggle('site-page-hsk', page === 'hsk');
     updateNavActive(page);
     if (scrollTop) window.scrollTo({ top: 0, behavior: 'smooth' });
     if (typeof observeAnimations === 'function') observeAnimations();

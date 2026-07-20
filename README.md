@@ -18,6 +18,8 @@ C-Lingo官网/
 ├── js/
 │   ├── router.js           # 路径路由（History API）
 │   ├── experience-page.js  # 体验官活动页内容
+│   ├── hsk-app-config.js   # HSK 平板应用 embed 地址
+│   ├── hsk-page.js         # Try HSK 页（平板 iframe）
 │   ├── api-config.js       # API 地址配置
 │   └── clingo-api.js       # 账号 / 反馈 API 封装
 ├── account.html            # 账号登录 / 注册
@@ -51,6 +53,7 @@ C-Lingo官网/
 **可分享路径示例**（刷新后仍停留在对应页面）：
 
 - http://192.168.x.x:8080/experience
+- http://192.168.x.x:8080/hsk
 - http://192.168.x.x:8080/about
 - http://192.168.x.x:8080/news
 
@@ -61,6 +64,7 @@ C-Lingo官网/
 - 账号：http://localhost:8080/account.html
 - 反馈：http://localhost:8080/feedback.html
 - API 默认地址：`http://localhost:3000`（见 `js/api-config.js`）
+- HSK 模考 embed 默认地址：`http://localhost:3001`（见 `js/hsk-app-config.js`，需同时运行 AIOS `local-agent-app`）
 - 后端项目：单独运行 `c-lingo-cms-backend` 的 `npm run dev`
 
 ### 备用：纯静态服务（不支持 clean URL）
@@ -144,6 +148,7 @@ C-Lingo官网/
 | `/about` | `about` | 关于我们 |
 | `/partners` | `partners` | 合作伙伴 |
 | `/experience` | `experience` | **体验官活动页** |
+| `/hsk` | `hsk` | **HSK 模考体验（平板 embed）** |
 | `/news` | `news` | 新闻列表 |
 | `/news/utar` | `news-article` | UTAR AI 中文教育交流 |
 | `/news/brics` | `news-article-brics` | BRICS+ 科技政策实践营 |
@@ -152,7 +157,7 @@ C-Lingo官网/
 | `/news/values` | `news-article-values` | Clarity / Confidence / Connection |
 | `/news/interview` | `news-article-interview` | Team Spotlight |
 
-顶栏 **About** 下拉：About Us · Partners · News & Updates；**Experience** 为 Home 旁独立 Tab（共 5 个主导航项）。
+顶栏 **About** 下拉：About Us · Methodology · Partners · News & Updates；**Try HSK** 与 **Experience（Try FREE）** 为 Home 旁独立 Tab（共 5 个主导航项）。
 
 ## 开发约定
 

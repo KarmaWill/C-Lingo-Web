@@ -138,18 +138,48 @@ body {
   white-space: nowrap;
 }
 
-.nav-links li a:hover,
-.nav-links li a.active {
+.nav-links li a:not(.nav-link-hsk):not(.nav-link-try):hover,
+.nav-links li a:not(.nav-link-hsk):not(.nav-link-try).active {
   color: var(--ink);
   background: rgba(19, 185, 130, 0.1);
 }
 
+.nav-links li a.nav-link-hsk,
 .nav-links li a.nav-link-try {
-  color: var(--accent-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  min-height: 32px;
+  border-radius: 20px;
+  font-size: 14px;
   font-weight: 600;
-  background: linear-gradient(135deg, rgba(185, 255, 90, 0.3), rgba(19, 185, 130, 0.14));
-  border: 1px solid rgba(19, 185, 130, 0.22);
-  box-shadow: 0 6px 18px rgba(19, 185, 130, 0.12);
+  line-height: 1.25;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.nav-links li a.nav-link-hsk {
+  color: var(--accent-strong);
+  background: transparent;
+  border: 1.5px solid rgba(19, 185, 130, 0.32);
+  box-shadow: none;
+}
+
+.nav-links li a.nav-link-hsk:hover,
+.nav-links li a.nav-link-hsk.active {
+  color: var(--accent-strong);
+  background: rgba(19, 185, 130, 0.08);
+  border-color: rgba(19, 185, 130, 0.45);
+  transform: translateY(-1px);
+  box-shadow: none;
+}
+
+.nav-links li a.nav-link-try {
+  color: #FFFFFF;
+  background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+  border: none;
+  box-shadow: 0 6px 18px rgba(19, 185, 130, 0.18);
 }
 
 .nav-links li a.nav-link-try:hover,
@@ -158,6 +188,39 @@ body {
   background: linear-gradient(135deg, var(--accent-strong), var(--accent));
   box-shadow: 0 8px 22px rgba(19, 185, 130, 0.22);
   transform: translateY(-1px);
+}
+
+body.site-page-hsk .nav-links li a.nav-link-hsk {
+  color: #FFFFFF;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+  border-color: transparent;
+  box-shadow: 0 6px 18px rgba(19, 185, 130, 0.18);
+}
+
+body.site-page-hsk .nav-links li a.nav-link-hsk:hover,
+body.site-page-hsk .nav-links li a.nav-link-hsk.active {
+  color: #FFFFFF;
+  background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+  border-color: transparent;
+  box-shadow: 0 8px 22px rgba(19, 185, 130, 0.22);
+  transform: translateY(-1px);
+}
+
+body.site-page-hsk .nav-links li a.nav-link-try {
+  color: var(--ink-secondary);
+  font-weight: 400;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+body.site-page-hsk .nav-links li a.nav-link-try:hover,
+body.site-page-hsk .nav-links li a.nav-link-try.active {
+  color: var(--ink);
+  background: rgba(19, 185, 130, 0.1);
+  transform: none;
+  box-shadow: none;
 }
 
 .nav-dropdown { position: relative; display: flex; align-items: center; }
@@ -1227,6 +1290,23 @@ h1, h2, h3, .serif {
 .product-card-body p { font-size: 14.5px; color: var(--ink-secondary); line-height: 1.65; margin-bottom: 20px; font-weight: 300; }
 
 .feature-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+.product-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: stretch;
+}
+.product-card-actions .btn-outline,
+.product-card-actions .btn-dark {
+  flex: 1 1 140px;
+  min-height: 44px;
+  text-align: center;
+  justify-content: center;
+}
+.product-card-actions .btn-outline {
+  border-color: rgba(19, 185, 130, 0.32);
+  color: var(--accent-strong);
+}
 .feature-tag {
   font-size: 12px;
   color: var(--ink-secondary);
@@ -4120,6 +4200,269 @@ a.exp-apply-mark:hover {
   .exp-overview-grid { grid-template-columns: 1fr; }
   .news-card--featured-exp { grid-template-columns: 1fr; }
 }
+
+/* ─── PAGE: HSK TRY (tablet embed) ─── */
+.hsk-page {
+  --hsk-page-bg: linear-gradient(180deg, #F4FFF5 0%, #EAFBF0 48%, #F7FFF6 100%);
+  --hsk-surface-solid: #F4FFF5;
+  min-height: auto;
+  padding: 88px 40px 40px;
+  background: var(--hsk-page-bg);
+}
+.hsk-page-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.28fr);
+  gap: 36px;
+  align-items: start;
+}
+.hsk-page-copy h1 {
+  font-size: clamp(32px, 3.8vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -1px;
+  color: var(--ink);
+  margin: 12px 0 14px;
+}
+.hsk-page-copy h1 em { font-style: italic; color: var(--accent-strong); }
+.hsk-page-lead {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-secondary);
+  margin: 0 0 16px;
+  max-width: 540px;
+}
+.hsk-compare-wrap {
+  margin-bottom: 12px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 109, 80, 0.1);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(6px);
+}
+.hsk-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.hsk-compare-table th,
+.hsk-compare-table td {
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(0, 109, 80, 0.08);
+}
+.hsk-compare-table thead th {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.65);
+}
+.hsk-compare-table thead .col-official {
+  color: #B91C1C;
+  background: rgba(185, 28, 28, 0.08);
+}
+.hsk-compare-table thead .col-clingo {
+  color: #0F766E;
+  background: rgba(19, 185, 130, 0.14);
+}
+.hsk-compare-table tbody th {
+  width: 28%;
+  font-weight: 700;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.35);
+}
+.hsk-compare-table tbody td.col-official {
+  color: #7F1D1D;
+  background: rgba(185, 28, 28, 0.04);
+  font-weight: 500;
+}
+.hsk-compare-table tbody td.col-clingo {
+  color: #065F46;
+  background: rgba(19, 185, 130, 0.08);
+  font-weight: 600;
+}
+.hsk-compare-table tbody td:not(.col-official):not(.col-clingo) {
+  color: var(--ink-secondary);
+}
+.hsk-compare-table tbody tr:last-child th,
+.hsk-compare-table tbody tr:last-child td { border-bottom: 0; }
+.hsk-page-switch-note {
+  font-size: 12px;
+  color: rgba(0, 109, 80, 0.65);
+  margin: 0 0 16px;
+  line-height: 1.45;
+}
+.hsk-page-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.hsk-tablet-stage {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: sticky;
+  top: 88px;
+}
+.hsk-tablet-preview-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 900px);
+  gap: 14px;
+}
+.hsk-tablet-preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: visible;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+}
+.hsk-tablet-preview-slot {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7%;
+  box-sizing: border-box;
+  background: transparent;
+}
+.hsk-tablet-enter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  min-height: 48px;
+  border: 1.5px solid rgba(19, 185, 130, 0.32);
+  border-radius: 999px;
+  background: rgba(234, 251, 240, 0.95);
+  box-shadow: 0 6px 20px rgba(19, 185, 130, 0.1);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #065F46;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background 0.2s var(--transition), border-color 0.2s var(--transition), transform 0.2s var(--transition), box-shadow 0.2s var(--transition);
+}
+.hsk-tablet-enter-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(19, 185, 130, 0.14);
+  color: var(--accent-strong);
+}
+.hsk-tablet-enter-btn:hover {
+  background: #fff;
+  border-color: rgba(19, 185, 130, 0.45);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(19, 185, 130, 0.16);
+}
+.hsk-tablet-enter-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(19, 185, 130, 0.28), 0 10px 28px rgba(19, 185, 130, 0.14);
+}
+.hsk-tablet-iframe {
+  border: 0;
+  display: block;
+  background: transparent;
+}
+.hsk-tablet-iframe--preview {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  pointer-events: none;
+  border-radius: 10px;
+}
+.hsk-fullscreen-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--hsk-page-bg);
+  pointer-events: auto;
+}
+.hsk-fullscreen-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 45% at 50% 52%, rgba(19, 185, 130, 0.07), transparent 70%);
+}
+.hsk-fullscreen-overlay.is-open { display: flex; }
+body.hsk-fullscreen-active { overflow: hidden; }
+body.hsk-fullscreen-active .nav { opacity: 0; pointer-events: none; }
+.hsk-fullscreen-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  z-index: 3;
+  border: 1.5px solid rgba(0, 109, 80, 0.22);
+  border-radius: 999px;
+  padding: 12px 20px;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 77, 53, 0.08);
+}
+.hsk-fullscreen-close:hover {
+  background: #fff;
+  border-color: rgba(19, 185, 130, 0.35);
+}
+.hsk-fullscreen-stage {
+  position: relative;
+  z-index: 2;
+  width: min(96vw, 1240px);
+  height: min(90vh, 880px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+.hsk-tablet-iframe--fullscreen {
+  width: 100%;
+  height: 100%;
+  pointer-events: auto !important;
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 32px 80px rgba(0, 77, 53, 0.14);
+}
+body.hsk-fullscreen-active .hsk-fullscreen-overlay,
+body.hsk-fullscreen-active .hsk-fullscreen-stage,
+body.hsk-fullscreen-active .hsk-tablet-iframe--fullscreen {
+  pointer-events: auto;
+}
+@media (max-width: 1024px) {
+  .hsk-page-inner { grid-template-columns: 1fr; gap: 24px; }
+  .hsk-tablet-stage { position: static; }
+  .hsk-compare-table { font-size: 12px; }
+  .hsk-compare-table th,
+  .hsk-compare-table td { padding: 8px 10px; }
+}
+@media (max-width: 768px) {
+  .hsk-page { padding: 84px 20px 32px; }
+  .hsk-compare-wrap { overflow-x: auto; }
+  .hsk-compare-table { min-width: 420px; }
+}
 </style>
 </head>
 <body>
@@ -4131,19 +4474,19 @@ a.exp-apply-mark:hover {
   </div>
   <ul class="nav-links">
     <li><a onclick="goTo('home')" data-page="home">Home</a></li>
+    <li><a class="nav-link-hsk" onclick="goTo('hsk')" data-page="hsk">Try HSK</a></li>
     <li><a class="nav-link-try" onclick="goTo('experience')" data-page="experience">Try FREE</a></li>
-    <li><a onclick="goTo('methodology')" data-page="methodology">Methodology</a></li>
     <li><a onclick="goTo('products')" data-page="products">Products</a></li>
-    <li class="nav-dropdown" data-pages="about,partners,news">
+    <li class="nav-dropdown" data-pages="about,methodology,partners,news">
       <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">About</button>
       <ul class="nav-dropdown-menu">
         <li><a onclick="goTo('about')" data-page="about">About Us</a></li>
-        <li><a onclick="goTo('partners')" data-page="partners">Partners</a></li>
+        <li><a onclick="goTo('methodology')" data-page="methodology">Methodology</a></li>
         <li><a onclick="goTo('news')" data-page="news">News &amp; Updates</a></li>
       </ul>
     </li>
   </ul>
-  <a class="nav-cta" href="mailto:partnerships@clingo.hk">Partnerships</a>
+  <a class="nav-cta" onclick="goTo('partners')">Partnerships</a>
 </nav>
 
 <!-- ══════════════════════════════════════ HOME ══════════════════════════════════════ -->
@@ -4168,6 +4511,7 @@ a.exp-apply-mark:hover {
         <p class="hero-sub">Designed for learners worldwide to study smarter and use Chinese in real life.</p>
         <div class="hero-actions">
           <a class="btn-primary" onclick="goTo('products')">Explore Products</a>
+          <a class="btn-ghost" onclick="goTo('hsk')">Try HSK Mock →</a>
         </div>
       </div>
 
@@ -4289,7 +4633,10 @@ a.exp-apply-mark:hover {
               <span class="feature-tag">Gamified</span>
               <span class="feature-tag">Online+Offline</span>
             </div>
-          <a class="btn-dark" onclick="event.stopPropagation(); goTo('product-tablet')">Explore Tablet →</a>
+            <div class="product-card-actions">
+              <a class="btn-dark" onclick="event.stopPropagation(); goTo('product-tablet')">Explore Tablet →</a>
+              <a class="btn-outline" onclick="event.stopPropagation(); goTo('hsk')">Try HSK Mock →</a>
+            </div>
           </div>
         </div>
         <div class="product-card" onclick="goTo('products')">
@@ -5157,61 +5504,24 @@ a.exp-apply-mark:hover {
   <section class="product-detail-main section-full">
     <div class="product-detail-main-inner">
       <figure class="product-detail-showcase pen-showcase animate-in">
-        <img src="assets/product-scanpen-showcase.png" alt="C-Lingo AIOS Chinese Learning ScanPen — the world's first offline-first Chinese learning scan pen">
+        <img src="assets/scanpen-details/scanpen-detail-01.png" alt="C-Lingo AIOS Chinese Learning ScanPen — pocket Chinese tutor with scan, HSK, AI speaking, and offline learning">
       </figure>
 
       <div class="product-detail-intro animate-in">
         <p>A complete system integrating HSK, textbook content, and AI-powered learning — works even offline. Not just a scan pen, but a portable Chinese learning system that helps learners understand, learn, practice, test, and speak Chinese anytime.</p>
       </div>
 
-      <div class="product-detail-section-title animate-in">
-        <div class="eyebrow">Core Capabilities</div>
-        <h2 class="section-title">Learning that moves with you.</h2>
-      </div>
-
-      <div class="product-detail-features animate-in">
-        <div class="product-detail-feature">
-          <h4>Full Learning Path</h4>
-          <p>Scan, understand, practice, test, and speak — a complete portable learning workflow in one device.</p>
-        </div>
-        <div class="product-detail-feature">
-          <h4>HSK 3.0 Aligned</h4>
-          <p>Structured content mapped to official proficiency levels for consistent, exam-oriented progress.</p>
-        </div>
-        <div class="product-detail-feature">
-          <h4>Instant Understanding</h4>
-          <p>Point, scan, and decode characters, words, and sentences instantly from textbooks and real materials.</p>
-        </div>
-        <div class="product-detail-feature">
-          <h4>Offline Learning</h4>
-          <p>Full-scenario offline decoding and study — no Wi-Fi required for core learning functions.</p>
-        </div>
-        <div class="product-detail-feature">
-          <h4>AI Speaking Coach</h4>
-          <p>Practice pronunciation and conversation with AI support, designed for focused review after sessions.</p>
-        </div>
-        <div class="product-detail-feature">
-          <h4>Trusted Textbooks</h4>
-          <p>Integrated with authoritative textbook content, extending classroom learning into daily life.</p>
-        </div>
-      </div>
-
-      <div class="product-detail-highlights animate-in">
-        <div>
-          <h3>Ubiquitous learning extension</h3>
-          <p>Supporting full-scenario offline decoding, the ScanPen extends structured learning beyond the classroom — during commutes, breaks, travel, and everyday reading moments.</p>
-          <p>It connects textbook study with real-world language use, breaking the boundary between learning environments.</p>
-        </div>
-        <div>
-          <h3>Portable by design</h3>
-          <ul>
-            <li>Scan-to-learn from physical books and printed materials</li>
-            <li>HSK practice and character writing support on the go</li>
-            <li>Works seamlessly within the C-Lingo connected ecosystem</li>
-            <li>Ideal for learners who need flexibility outside fixed study time</li>
-            <li>Offline-first architecture for reliable daily use</li>
-          </ul>
-        </div>
+      <div class="product-detail-gallery animate-in">
+        <img src="assets/scanpen-details/scanpen-detail-02.png" alt="Chinese gets easier when help is in your hand — before and after learning with C-Lingo ScanPen">
+        <img src="assets/scanpen-details/scanpen-detail-03.png" alt="A dedicated tool for daily Chinese practice — less distracting than phone apps, more learning-focused than translation tools">
+        <img src="assets/scanpen-details/scanpen-detail-04.png" alt="Scan, Learn, Practice, Test, Speak — connected offline-ready Chinese learning flow in one ScanPen">
+        <img src="assets/scanpen-details/scanpen-detail-05.png" alt="Turn every unfamiliar word into a chance to learn more — instant understanding, stroke order, vocabulary level, and multilingual scan translation">
+        <img src="assets/scanpen-details/scanpen-detail-06.png" alt="From characters to readable Chinese — pinyin display, tone learning, pronunciation audio, and follow-along assessment">
+        <img src="assets/scanpen-details/scanpen-detail-07.png" alt="Build HSK vocabulary level by level — HSK 3.0 word lists, word cards, and interactive quizzes">
+        <img src="assets/scanpen-details/scanpen-detail-08.png" alt="Listen, read along, and practice with textbook content — authorized textbooks, synced text and audio, and related quizzes">
+        <img src="assets/scanpen-details/scanpen-detail-09.png" alt="Built for different Chinese learning needs — customizable scanning, listening, and playback settings">
+        <img src="assets/scanpen-details/scanpen-detail-10.png" alt="Learn Chinese wherever study happens — offline learning and multilingual support for global learners">
+        <img src="assets/scanpen-details/scanpen-detail-11.png" alt="Practice first, speak with more confidence — AI Tutor with scene modes, scoring, and learning summaries">
       </div>
 
       <div class="product-detail-cta animate-in">
@@ -5411,6 +5721,9 @@ a.exp-apply-mark:hover {
 
 <!-- ══════════════════════════════════════ EXPERIENCE PROGRAM ══════════════════════════════════════ -->
 <div class="page" id="page-experience"></div>
+
+<!-- ══════════════════════════════════════ HSK TRY (tablet embed) ══════════════════════════════════════ -->
+<div class="page" id="page-hsk"></div>
 
 <!-- ══════════════════════════════════════ PARTNERS ══════════════════════════════════════ -->
 <div class="page" id="page-partners">
@@ -6036,8 +6349,10 @@ a.exp-apply-mark:hover {
   </div>
 </div>
 
+<script src="js/hsk-app-config.js"></script>
 <script src="js/router.js"></script>
 <script src="js/experience-page.js"></script>
+<script src="js/hsk-page.js"></script>
 <script>
 // ─── USER STORY VIDEOS ───
 // Paste YouTube URL or 11-character video ID for each story.
