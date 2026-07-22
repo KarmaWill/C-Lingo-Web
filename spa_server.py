@@ -2,7 +2,6 @@
 """Static file server with SPA fallback for clean URL routing."""
 import http.server
 import os
-import socketserver
 import sys
 import urllib.parse
 
@@ -29,8 +28,12 @@ class SPAHandler(http.server.SimpleHTTPRequestHandler):
         return super().do_GET()
 
 
+class ThreadingSPAServer(http.server.ThreadingHTTPServer):
+    allow_reuse_address = True
+    daemon_threads = True
+
+
 if __name__ == "__main__":
-    socketserver.TCPServer.allow_reuse_address = True
-    with socketserver.TCPServer(("0.0.0.0", PORT), SPAHandler) as httpd:
+    with ThreadingSPAServer(("0.0.0.0", PORT), SPAHandler) as httpd:
         print(f"Serving SPA on http://0.0.0.0:{PORT}/ (fallback → index.html)")
         httpd.serve_forever()
