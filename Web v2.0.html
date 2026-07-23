@@ -2357,9 +2357,24 @@ body.video-modal-open { overflow: hidden; }
   min-height: 0;
   padding: 0;
 }
+#page-product-scanpen .product-detail-scanpen-visual {
+  margin-top: -48px;
+  margin-bottom: 24px;
+}
+#page-product-scanpen .product-detail-scanpen-visual img,
+#page-product-scanpen .product-detail-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 24px;
+  border: none;
+  background: transparent;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+}
 .product-detail-showcase img { width: auto; height: auto; max-width: 72%; max-height: 380px; object-fit: contain; display: block; }
 .product-detail-showcase.tablet-showcase img { width: 100%; max-width: 100%; max-height: none; object-fit: contain; }
-.product-detail-showcase.pen-showcase img { width: 100%; max-width: 100%; max-height: none; object-fit: contain; border-radius: 0; }
 .product-detail-gallery {
   display: flex;
   flex-direction: column;
@@ -3100,6 +3115,7 @@ footer {
   .product-detail-features { grid-template-columns: 1fr; }
   .product-detail-highlights { grid-template-columns: 1fr; gap: 32px; }
   .product-detail-showcase { min-height: 280px; margin-top: -32px; }
+  #page-product-scanpen .product-detail-scanpen-visual { margin-top: -32px; }
   .belief-inner { grid-template-columns: 1fr; gap: 40px; }
   .brand-positioning { grid-template-columns: 1fr; gap: 32px; }
   .values-grid { grid-template-columns: 1fr 1fr; }
@@ -5503,25 +5519,25 @@ body.hsk-fullscreen-active .hsk-tablet-iframe--fullscreen {
 
   <section class="product-detail-main section-full">
     <div class="product-detail-main-inner">
-      <figure class="product-detail-showcase pen-showcase animate-in">
-        <img src="assets/scanpen-details/scanpen-detail-01.png" alt="C-Lingo AIOS Chinese Learning ScanPen — pocket Chinese tutor with scan, HSK, AI speaking, and offline learning">
-      </figure>
+      <div class="product-detail-scanpen-visual animate-in">
+        <img src="assets/scanpen-details/scanpen-detail-01.jpg?v=20260724" alt="C-Lingo AIOS Chinese Learning ScanPen — pocket Chinese tutor with scan, HSK, AI speaking, and offline learning" width="3050" height="2012" decoding="async">
+      </div>
 
       <div class="product-detail-intro animate-in">
         <p>A complete system integrating HSK, textbook content, and AI-powered learning — works even offline. Not just a scan pen, but a portable Chinese learning system that helps learners understand, learn, practice, test, and speak Chinese anytime.</p>
       </div>
 
       <div class="product-detail-gallery animate-in">
-        <img src="assets/scanpen-details/scanpen-detail-02.png" alt="Chinese gets easier when help is in your hand — before and after learning with C-Lingo ScanPen">
-        <img src="assets/scanpen-details/scanpen-detail-03.png" alt="A dedicated tool for daily Chinese practice — less distracting than phone apps, more learning-focused than translation tools">
-        <img src="assets/scanpen-details/scanpen-detail-04.png" alt="Scan, Learn, Practice, Test, Speak — connected offline-ready Chinese learning flow in one ScanPen">
-        <img src="assets/scanpen-details/scanpen-detail-05.png" alt="Turn every unfamiliar word into a chance to learn more — instant understanding, stroke order, vocabulary level, and multilingual scan translation">
-        <img src="assets/scanpen-details/scanpen-detail-06.png" alt="From characters to readable Chinese — pinyin display, tone learning, pronunciation audio, and follow-along assessment">
-        <img src="assets/scanpen-details/scanpen-detail-07.png" alt="Build HSK vocabulary level by level — HSK 3.0 word lists, word cards, and interactive quizzes">
-        <img src="assets/scanpen-details/scanpen-detail-08.png" alt="Listen, read along, and practice with textbook content — authorized textbooks, synced text and audio, and related quizzes">
-        <img src="assets/scanpen-details/scanpen-detail-09.png" alt="Built for different Chinese learning needs — customizable scanning, listening, and playback settings">
-        <img src="assets/scanpen-details/scanpen-detail-10.png" alt="Learn Chinese wherever study happens — offline learning and multilingual support for global learners">
-        <img src="assets/scanpen-details/scanpen-detail-11.png" alt="Practice first, speak with more confidence — AI Tutor with scene modes, scoring, and learning summaries">
+        <img src="assets/scanpen-details/scanpen-detail-02.jpg?v=20260724" alt="Chinese gets easier when help is in your hand — before and after learning with C-Lingo ScanPen" width="3050" height="2013" loading="lazy" decoding="async">
+        <img src="assets/scanpen-details/scanpen-detail-03.jpg?v=20260724" alt="A dedicated tool for daily Chinese practice — less distracting than phone apps, more learning-focused than translation tools" width="3050" height="2012" loading="lazy" decoding="async">
+        <img src="assets/scanpen-details/scanpen-detail-04.jpg?v=20260724" alt="Scan, Learn, Practice, Test, Speak — connected offline-ready Chinese learning flow in one ScanPen" width="3050" height="2013" loading="lazy" decoding="async">
+        <img src="assets/scanpen-details/scanpen-detail-05.jpg?v=20260724" alt="Turn every unfamiliar word into a chance to learn more — instant understanding, stroke order, vocabulary level, and multilingual scan translation" width="3050" height="2012" loading="lazy" decoding="async">
+        <img src="assets/scanpen-details/scanpen-detail-06.jpg?v=20260724" alt="From characters to readable Chinese — pinyin display, tone learning, pronunciation audio, and follow-along assessment" width="3050" height="2013" loading="lazy" decoding="async">
+        <img src="assets/scanpen-details/scanpen-detail-07.jpg?v=20260724" alt="Build HSK vocabulary level by level — HSK 3.0 word lists, word cards, and interactive quizzes" width="3050" height="2012" loading="lazy" decoding="async">
+        <img src="assets/scanpen-details/scanpen-detail-08.jpg?v=20260724" alt="Listen, read along, and practice with textbook content — authorized textbooks, synced text and audio, and related quizzes" width="3050" height="2013" loading="lazy" decoding="async">
+        <img src="assets/scanpen-details/scanpen-detail-09.jpg?v=20260724" alt="Built for different Chinese learning needs — customizable scanning, listening, and playback settings" width="3050" height="2012" loading="lazy" decoding="async">
+        <img src="assets/scanpen-details/scanpen-detail-10.jpg?v=20260724" alt="Learn Chinese wherever study happens — offline learning and multilingual support for global learners" width="3050" height="2013" loading="lazy" decoding="async">
+        <img src="assets/scanpen-details/scanpen-detail-11.jpg?v=20260724" alt="Practice first, speak with more confidence — AI Tutor with scene modes, scoring, and learning summaries" width="3050" height="2013" loading="lazy" decoding="async">
       </div>
 
       <div class="product-detail-cta animate-in">
