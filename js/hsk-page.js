@@ -2,6 +2,7 @@
   var fullscreenActive = false;
   var examInProgress = false;
   var lastFocusedElement = null;
+  var inertBackgroundElements = [];
   var HSK_PAGE_BG =
     'linear-gradient(180deg, #F4FFF5 0%, #EAFBF0 48%, #F7FFF6 100%)';
 
@@ -45,6 +46,22 @@
     examInProgress = false;
   }
 
+  function setBackgroundInert(active, overlay) {
+    if (active) {
+      inertBackgroundElements = Array.prototype.filter.call(document.body.children, function (element) {
+        return element !== overlay && !element.inert;
+      });
+      inertBackgroundElements.forEach(function (element) {
+        element.inert = true;
+      });
+      return;
+    }
+    inertBackgroundElements.forEach(function (element) {
+      element.inert = false;
+    });
+    inertBackgroundElements = [];
+  }
+
   function setFullscreen(active, root) {
     fullscreenActive = active;
     document.body.classList.toggle('hsk-fullscreen-active', active);
@@ -57,6 +74,7 @@
     if (overlay) {
       overlay.classList.toggle('is-open', active);
       overlay.setAttribute('aria-hidden', active ? 'false' : 'true');
+      setBackgroundInert(active, overlay);
     }
     if (active) {
       var iframe = createExamIframe(root);
@@ -81,7 +99,6 @@
     lastFocusedElement = null;
     return true;
   }
-
   function bindHskInteractions(root) {
     var enterBtn = root.querySelector('.hsk-tablet-enter-btn');
     var overlay = document.getElementById('hsk-fullscreen-overlay');
@@ -182,7 +199,7 @@
             '</div>' +
           '</div>' +
         '</section>' +
-        '<div class="hsk-fullscreen-overlay" id="hsk-fullscreen-overlay" aria-hidden="true">' +
+        '<div class="hsk-fullscreen-overlay" id="hsk-fullscreen-overlay" role="dialog" aria-modal="true" aria-label="C-Lingo HSK mock exam" aria-hidden="true">' +
           '<button type="button" class="hsk-fullscreen-close" aria-label="Close full screen">Close ✕</button>' +
           '<div class="hsk-fullscreen-stage"></div>' +
         '</div>';

@@ -157,7 +157,7 @@ C-Lingo官网/
 | `/news/values` | `news-article-values` | Clarity / Confidence / Connection |
 | `/news/interview` | `news-article-interview` | Team Spotlight |
 
-顶栏 **About** 下拉：About Us · Methodology · News & Updates；**Partnerships** 为右侧独立入口，**Try HSK** 与 **Experience（Try FREE）** 为 Home 旁独立 Tab（共 5 个主导航项）。
+顶栏 **About** 下拉：About Us · Methodology · Partners · News & Updates；**Try HSK** 与 **Experience（Try FREE）** 为 Home 旁独立 Tab（共 5 个主导航项）。
 
 ## 开发约定
 
