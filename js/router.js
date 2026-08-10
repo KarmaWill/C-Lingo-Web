@@ -104,6 +104,8 @@
     }
     if (page === 'hsk' && window.mountHskPage) {
       window.mountHskPage();
+    } else if (window.stopHskPreviewCarousel) {
+      window.stopHskPreviewCarousel();
     }
     document.body.classList.toggle('site-page-hsk', page === 'hsk');
     updateNavActive(page);

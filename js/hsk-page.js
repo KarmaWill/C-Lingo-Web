@@ -3,8 +3,36 @@
   var examInProgress = false;
   var lastFocusedElement = null;
   var inertBackgroundElements = [];
+  var previewCarouselTimer = null;
   var HSK_PAGE_BG =
     'linear-gradient(180deg, #F4FFF5 0%, #EAFBF0 48%, #F7FFF6 100%)';
+  var PREVIEW_SLIDES = [
+    {
+      src: 'assets/hsk-preview/hsk-cutout-01-levels.png?v=20260731hd',
+      alt: 'HSK mock exam — choose level'
+    },
+    {
+      src: 'assets/hsk-preview/hsk-cutout-02-papers.png?v=20260731hd',
+      alt: 'HSK 1 practice papers — mock test and C-Lingo practice'
+    },
+    {
+      src: 'assets/hsk-preview/hsk-cutout-03-listening.png?v=20260731hd',
+      alt: 'HSK 1 mock exam — listening question with image options'
+    },
+    {
+      src: 'assets/hsk-preview/hsk-cutout-04-match.png?v=20260731hd',
+      alt: 'HSK 1 mock exam — listen and match images'
+    },
+    {
+      src: 'assets/hsk-preview/hsk-cutout-05-fillblank.png?v=20260731hd',
+      alt: 'HSK 1 mock exam — fill in the blank with pinyin'
+    },
+    {
+      src: 'assets/hsk-preview/hsk-cutout-06-results.png?v=20260731hd',
+      alt: 'HSK 1 mock exam — score report and answer review'
+    }
+  ];
+  var PREVIEW_INTERVAL_MS = 3200;
 
   function getSearchParams() {
     return new URLSearchParams(window.location.search || '');
@@ -99,6 +127,64 @@
     lastFocusedElement = null;
     return true;
   }
+  function stopPreviewCarousel() {
+    if (previewCarouselTimer) {
+      window.clearInterval(previewCarouselTimer);
+      previewCarouselTimer = null;
+    }
+  }
+
+  function startPreviewCarousel(root) {
+    stopPreviewCarousel();
+    var slides = root.querySelectorAll('.hsk-tablet-preview-slide');
+    var carousel = root.querySelector('.hsk-tablet-preview-carousel');
+    if (slides.length < 2 || PREVIEW_SLIDES.length < 2) return;
+    var index = 0;
+    var front = 0;
+    previewCarouselTimer = window.setInterval(function () {
+      index = (index + 1) % PREVIEW_SLIDES.length;
+      var back = 1 - front;
+      slides[back].src = PREVIEW_SLIDES[index].src;
+      slides[back].alt = PREVIEW_SLIDES[index].alt;
+      slides[front].classList.remove('is-active');
+      slides[back].classList.add('is-active');
+      front = back;
+      if (carousel) {
+        carousel.classList.remove('is-switching');
+        void carousel.offsetWidth;
+        carousel.classList.add('is-switching');
+        window.setTimeout(function () {
+          carousel.classList.remove('is-switching');
+        }, 850);
+      }
+    }, PREVIEW_INTERVAL_MS);
+  }
+
+  function buildPreviewCarouselHtml() {
+    var first = PREVIEW_SLIDES[0];
+    var second = PREVIEW_SLIDES[1];
+    return (
+      '<div class="hsk-tablet-preview-slot" aria-live="polite">' +
+        '<div class="hsk-tablet-float">' +
+          '<div class="hsk-tablet-cutout">' +
+            '<div class="hsk-tablet-preview-carousel">' +
+              '<img class="hsk-tablet-preview-slide is-active" src="' +
+                first.src +
+                '" alt="' +
+                first.alt +
+                '" width="2880" height="1785" decoding="async" fetchpriority="high">' +
+              '<img class="hsk-tablet-preview-slide" src="' +
+                second.src +
+                '" alt="' +
+                second.alt +
+                '" width="2880" height="1785" decoding="async">' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
   function bindHskInteractions(root) {
     var enterBtn = root.querySelector('.hsk-tablet-enter-btn');
     var overlay = document.getElementById('hsk-fullscreen-overlay');
@@ -140,11 +226,13 @@
     if (!root) return;
 
     var needsMount =
-      root.dataset.mounted !== '3' ||
+      root.dataset.mounted !== '16' ||
       !root.querySelector('.hsk-tablet-enter-btn') ||
-      !root.querySelector('.hsk-tablet-preview-col');
+      !root.querySelector('.hsk-tablet-cutout') ||
+      root.querySelectorAll('.hsk-tablet-preview-slide').length !== 2;
 
     if (needsMount) {
+      stopPreviewCarousel();
       root.innerHTML =
         '<section class="hsk-page">' +
           '<div class="hsk-page-inner">' +
@@ -180,9 +268,7 @@
             '<div class="hsk-tablet-stage animate-in" style="transition-delay:0.08s">' +
               '<div class="hsk-tablet-preview-col">' +
                 '<div class="hsk-tablet-preview">' +
-                  '<div class="hsk-tablet-preview-slot">' +
-                    '<img class="hsk-tablet-preview-image" src="assets/experience-hero-tablet.png" alt="C-Lingo HSK mock exam tablet preview">' +
-                  '</div>' +
+                  buildPreviewCarouselHtml() +
                 '</div>' +
                 '<button type="button" class="hsk-tablet-enter-btn">' +
                   '<span class="hsk-tablet-enter-icon" aria-hidden="true">' +
@@ -204,12 +290,15 @@
           '<div class="hsk-fullscreen-stage"></div>' +
         '</div>';
 
-      root.dataset.mounted = '3';
+      root.dataset.mounted = '16';
       var overlay = document.getElementById('hsk-fullscreen-overlay');
       if (overlay && overlay.parentNode !== document.body) {
         document.body.appendChild(overlay);
       }
       bindHskInteractions(root);
+      startPreviewCarousel(root);
+    } else if (!previewCarouselTimer) {
+      startPreviewCarousel(root);
     }
 
     if (fullscreenActive) closeFullscreen(root, true);
@@ -241,5 +330,6 @@
     return closeFullscreen(document.getElementById('page-hsk'), false);
   };
   window.mountHskPage = mountHskPage;
+  window.stopHskPreviewCarousel = stopPreviewCarousel;
   window.HSK_PAGE_BG = HSK_PAGE_BG;
 })();
