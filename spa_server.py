@@ -13,6 +13,11 @@ class SPAHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=ROOT, **kwargs)
 
+    def end_headers(self):
+        if self.path.endswith(".html") or self.path.endswith("/") or "index.html" in self.path:
+            self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+        super().end_headers()
+
     def do_GET(self):
         path = urllib.parse.unquote(self.path.split("?", 1)[0])
         rel = path.lstrip("/")
