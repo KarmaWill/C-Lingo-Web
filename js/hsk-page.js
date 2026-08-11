@@ -47,7 +47,15 @@
     return '/hsk-prep-training';
   }
 
+  function isExamEmbedEnabled() {
+    if (typeof window.isHskExamEmbedEnabled === 'function') {
+      return window.isHskExamEmbedEnabled();
+    }
+    return Boolean(window.CLINGO_HSK_EXAM_EMBED_ENABLED);
+  }
+
   function createExamIframe(root) {
+    if (!isExamEmbedEnabled()) return null;
     var overlay = document.getElementById('hsk-fullscreen-overlay');
     var fullscreenSlot = overlay && overlay.querySelector('.hsk-fullscreen-stage');
     if (!fullscreenSlot) return null;
@@ -91,6 +99,7 @@
   }
 
   function setFullscreen(active, root) {
+    if (active && !isExamEmbedEnabled()) return;
     fullscreenActive = active;
     document.body.classList.toggle('hsk-fullscreen-active', active);
     var overlay = document.getElementById('hsk-fullscreen-overlay');
@@ -185,12 +194,45 @@
     );
   }
 
+  function buildEnterButtonHtml() {
+    var enabled = isExamEmbedEnabled();
+    if (enabled) {
+      return (
+        '<button type="button" class="hsk-tablet-enter-btn">' +
+          '<span class="hsk-tablet-enter-icon" aria-hidden="true">' +
+            '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+              '<path d="M3 6.5V3.5C3 3.22 3.22 3 3.5 3H6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+              '<path d="M11.5 3H14.5C14.78 3 15 3.22 15 3.5V6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+              '<path d="M15 11.5V14.5C15 14.78 14.78 15 14.5 15H11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+              '<path d="M6.5 15H3.5C3.22 15 3 14.78 3 14.5V11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+            '</svg>' +
+          '</span>' +
+          '<span class="hsk-tablet-enter-label">Open mock exam</span>' +
+        '</button>'
+      );
+    }
+    return (
+      '<button type="button" class="hsk-tablet-enter-btn is-protected" disabled aria-disabled="true" title="Mock exam opens on local / LAN preview only">' +
+        '<span class="hsk-tablet-enter-icon" aria-hidden="true">' +
+          '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+            '<path d="M3 6.5V3.5C3 3.22 3.22 3 3.5 3H6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+            '<path d="M11.5 3H14.5C14.78 3 15 3.22 15 3.5V6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+            '<path d="M15 11.5V14.5C15 14.78 14.78 15 14.5 15H11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+            '<path d="M6.5 15H3.5C3.22 15 3 14.78 3 14.5V11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+          '</svg>' +
+        '</span>' +
+        '<span class="hsk-tablet-enter-label">Coming soon</span>' +
+      '</button>'
+    );
+  }
+
   function bindHskInteractions(root) {
     var enterBtn = root.querySelector('.hsk-tablet-enter-btn');
     var overlay = document.getElementById('hsk-fullscreen-overlay');
     var closeBtn = overlay && overlay.querySelector('.hsk-fullscreen-close');
 
     function openFullscreen() {
+      if (!isExamEmbedEnabled()) return;
       lastFocusedElement = document.activeElement;
       setFullscreen(true, root);
     }
@@ -199,7 +241,7 @@
       window.closeHskFullscreen(false);
     }
 
-    if (enterBtn) {
+    if (enterBtn && isExamEmbedEnabled()) {
       enterBtn.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -226,10 +268,11 @@
     if (!root) return;
 
     var needsMount =
-      root.dataset.mounted !== '16' ||
+      root.dataset.mounted !== '17' ||
       !root.querySelector('.hsk-tablet-enter-btn') ||
       !root.querySelector('.hsk-tablet-cutout') ||
-      root.querySelectorAll('.hsk-tablet-preview-slide').length !== 2;
+      root.querySelectorAll('.hsk-tablet-preview-slide').length !== 2 ||
+      Boolean(root.querySelector('.hsk-tablet-enter-btn.is-protected')) === isExamEmbedEnabled();
 
     if (needsMount) {
       stopPreviewCarousel();
@@ -270,17 +313,7 @@
                 '<div class="hsk-tablet-preview">' +
                   buildPreviewCarouselHtml() +
                 '</div>' +
-                '<button type="button" class="hsk-tablet-enter-btn">' +
-                  '<span class="hsk-tablet-enter-icon" aria-hidden="true">' +
-                    '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-                      '<path d="M3 6.5V3.5C3 3.22 3.22 3 3.5 3H6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
-                      '<path d="M11.5 3H14.5C14.78 3 15 3.22 15 3.5V6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
-                      '<path d="M15 11.5V14.5C15 14.78 14.78 15 14.5 15H11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
-                      '<path d="M6.5 15H3.5C3.22 15 3 14.78 3 14.5V11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
-                    '</svg>' +
-                  '</span>' +
-                  '<span class="hsk-tablet-enter-label">Open mock exam</span>' +
-                '</button>' +
+                buildEnterButtonHtml() +
               '</div>' +
             '</div>' +
           '</div>' +
@@ -290,7 +323,7 @@
           '<div class="hsk-fullscreen-stage"></div>' +
         '</div>';
 
-      root.dataset.mounted = '16';
+      root.dataset.mounted = '17';
       var overlay = document.getElementById('hsk-fullscreen-overlay');
       if (overlay && overlay.parentNode !== document.body) {
         document.body.appendChild(overlay);

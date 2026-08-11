@@ -4448,6 +4448,20 @@ a.exp-apply-mark:hover {
 .hsk-tablet-enter-label {
   white-space: nowrap;
 }
+.hsk-tablet-enter-btn.is-protected,
+.hsk-tablet-enter-btn:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.hsk-tablet-enter-btn.is-protected:hover,
+.hsk-tablet-enter-btn:disabled:hover {
+  background: rgba(234, 251, 240, 0.95);
+  border-color: rgba(19, 185, 130, 0.32);
+  transform: none;
+  box-shadow: none;
+}
 .hsk-tablet-enter-icon {
   display: inline-flex;
   align-items: center;
@@ -6469,10 +6483,10 @@ body.hsk-fullscreen-active .hsk-tablet-iframe--fullscreen {
   </div>
 </div>
 
-<script src="js/hsk-app-config.js"></script>
+<script src="js/hsk-app-config.js?v=20260811protect"></script>
 <script src="js/router.js?v=20260731"></script>
 <script src="js/experience-page.js"></script>
-<script src="js/hsk-page.js?v=20260731hd2"></script>
+<script src="js/hsk-page.js?v=20260811protect"></script>
 <script>
 // ─── USER STORY VIDEOS ───
 // Paste YouTube URL or 11-character video ID for each story.
