@@ -4514,7 +4514,9 @@ a.exp-apply-mark:hover {
 .hsk-tablet-float {
   width: 100%;
   max-width: 720px;
+  transform: translate3d(0, 0, 0);
   animation: hsk-preview-float 5s ease-in-out infinite;
+  will-change: transform;
 }
 .hsk-tablet-cutout {
   position: relative;
@@ -4523,7 +4525,10 @@ a.exp-apply-mark:hover {
 .hsk-tablet-preview-carousel {
   position: relative;
   width: 100%;
+  /* Lock box to cutout aspect (2880×1785) so slide swaps never reflow height. */
+  aspect-ratio: 2880 / 1785;
   line-height: 0;
+  overflow: hidden;
 }
 .hsk-tablet-preview-carousel::after {
   content: '';
@@ -4537,31 +4542,26 @@ a.exp-apply-mark:hover {
   opacity: 0;
   transform: translateX(-180%) skewX(-12deg);
   pointer-events: none;
+  will-change: transform, opacity;
 }
 .hsk-tablet-preview-carousel.is-switching::after {
   animation: hsk-preview-sheen 0.85s ease-out;
 }
 .hsk-tablet-preview-slide {
-  display: block;
-  width: 100%;
-  height: auto;
-  vertical-align: top;
-  opacity: 0;
-  transition: opacity 0.7s ease;
-  pointer-events: none;
-}
-.hsk-tablet-preview-slide.is-active {
-  opacity: 1;
-  position: relative;
-  z-index: 2;
-}
-.hsk-tablet-preview-slide:not(.is-active) {
   position: absolute;
   inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  pointer-events: none;
   z-index: 1;
+}
+.hsk-tablet-preview-slide.is-active {
+  opacity: 1;
+  z-index: 2;
 }
 .hsk-tablet-enter-btn {
   display: inline-flex;
@@ -4626,8 +4626,8 @@ a.exp-apply-mark:hover {
   box-shadow: 0 0 0 3px rgba(19, 185, 130, 0.28), 0 10px 28px rgba(19, 185, 130, 0.14);
 }
 @keyframes hsk-preview-float {
-  0%, 100% { margin-top: 0; }
-  50% { margin-top: -4px; }
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -4px, 0); }
 }
 @keyframes hsk-preview-ground-shadow {
   0%, 100% { opacity: 0.6; transform: scaleX(0.94); }
@@ -6653,7 +6653,7 @@ body.hsk-fullscreen-active .hsk-tablet-iframe--fullscreen {
 <script src="js/router.js?v=20260813bgm"></script>
 <script src="js/home-bgm.js?v=20260813bgm3"></script>
 <script src="js/experience-page.js"></script>
-<script src="js/hsk-page.js?v=20260811protect"></script>
+<script src="js/hsk-page.js?v=20260813carousel"></script>
 <script>
 // ─── USER STORY VIDEOS ───
 // Paste YouTube URL or 11-character video ID for each story.

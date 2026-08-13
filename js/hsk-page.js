@@ -159,12 +159,14 @@
       slides[back].classList.add('is-active');
       front = back;
       if (carousel) {
+        // Restart sheen without forced layout read (offsetWidth caused switch jank).
         carousel.classList.remove('is-switching');
-        void carousel.offsetWidth;
-        carousel.classList.add('is-switching');
-        window.setTimeout(function () {
-          carousel.classList.remove('is-switching');
-        }, 850);
+        window.requestAnimationFrame(function () {
+          carousel.classList.add('is-switching');
+          window.setTimeout(function () {
+            carousel.classList.remove('is-switching');
+          }, 850);
+        });
       }
     }, PREVIEW_INTERVAL_MS);
   }
