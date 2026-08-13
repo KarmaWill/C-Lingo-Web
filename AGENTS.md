@@ -19,16 +19,48 @@ chmod +x start-lan.sh
 ```text
 index.html          入口
 js/router.js        前端路由
+js/home-bgm.js      首页 BGM 迷你播放器
 js/hsk-page.js      HSK 页面逻辑
 js/hsk-app-config.js  平板端嵌入地址配置
 js/api-config.js
 js/clingo-api.js
 js/clingo-cms.js
+assets/audio/       首页歌单本地音源(mp3)
 spa_server.py       SPA 回退服务器
 start-lan.sh        启动脚本
 vercel.json         生产部署配置
 Web v1.0/2.0/3.0.html  历史设计稿,不是线上页面
 ```
+
+## 首页 BGM 播放器
+
+仅 `#page-home` 显示右下角 BGM 控件。逻辑在 `js/home-bgm.js`,路由切换时由 `router.js` 调 `syncHomeBgm()`。
+
+### 行为(已拍板)
+
+- **默认收起**:只有约 44px 圆形播放/暂停钮;展开后才出歌名 + 上一首/下一首/静音
+- **展开/收起**:桌面悬停展开、移开收起;点击也可展开;点页面空白收起。触摸端正在播放时点圆钮先展开(不直接暂停);被拦自动播时点圆钮直接播放且保持收起
+- 进首页**立即尝试有声自动播放**(目标体验:打开即响)
+- 若被浏览器拦截:圆钮脉冲高亮,点圆钮播放;同时仍监听页面任意首次手势起播
+- 播放中收起态圆钮显示**暂停图标**
+- 歌单固定顺序循环 `1→2→3→4→1`
+- 用户点暂停后,本会话(`sessionStorage`)不再自动播;离开首页只暂停,不算「用户暂停」
+- 说明:Chrome/Safari/iOS 对「从未互动就出声」有硬限制,无法 100% 保证零手势出声
+- 默认音量约 `0.32`,静音状态本会话记住
+- 缺文件时自动跳过该曲,继续下一首
+
+### 音源规则
+
+**禁止**把 Suno 分享页 URL 当作 `<audio src>`。Suno 只作文案/曲目来源;必须导出本地文件放进 `assets/audio/`。
+
+| # | 曲名 | 文件 | Suno 来源 |
+|---|---|---|---|
+| 1 | Beyond Language | `01-beyond-language.mp3` | https://suno.com/s/Pg7yHwGRxmbioDoz |
+| 2 | Beyond Language Y | `02-beyond-language-y.mp3` | https://suno.com/s/e6F0ZEePbedBijGp |
+| 3 | Lumi-Nation (OP) | `03-lumi-nation-op.mp3` | https://suno.com/s/T8iRA6gHNFqL3r1M |
+| 4 | Lumi-Nation (Musical) | `04-lumi-nation-musical.mp3` | https://suno.com/s/z9ktnhOEpie36ptv |
+
+改歌单只改 `js/home-bgm.js` 的 `PLAYLIST`,并同步本表与文件名。
 
 ## 平板端嵌入
 

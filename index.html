@@ -2954,6 +2954,149 @@ body.video-modal-open { overflow: hidden; }
 
 .featured-badge { background: var(--accent-warm); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 14px; border-radius: 14px; }
 
+/* ─── HOME BGM MINI PLAYER (collapsed circle → expanded bar) ─── */
+.home-bgm {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  max-width: min(360px, calc(100vw - 32px));
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--border-dark);
+  box-shadow: 0 10px 28px rgba(0, 71, 53, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  transition:
+    padding 0.22s var(--transition),
+    gap 0.22s var(--transition),
+    box-shadow 0.22s var(--transition),
+    border-color 0.22s var(--transition);
+}
+.home-bgm[hidden] { display: none !important; }
+.home-bgm[data-expanded="1"] {
+  gap: 6px;
+  padding: 8px 10px 8px 14px;
+}
+.home-bgm[data-needs-gesture="1"] {
+  border-color: var(--accent);
+}
+.home-bgm-meta {
+  min-width: 0;
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  gap: 1px;
+  padding-right: 2px;
+}
+.home-bgm[data-expanded="1"] .home-bgm-meta { display: flex; }
+.home-bgm-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  line-height: 1.2;
+}
+.home-bgm[data-needs-gesture="1"] .home-bgm-label {
+  color: var(--accent-strong);
+}
+.home-bgm-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+  max-width: 140px;
+}
+.home-bgm-controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.home-bgm-btn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-secondary);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.home-bgm[data-expanded="1"] .home-bgm-btn { display: inline-flex; }
+.home-bgm-btn:hover {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+.home-bgm-btn:active { transform: scale(0.94); }
+.home-bgm-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.home-bgm-btn svg { width: 16px; height: 16px; display: block; }
+.home-bgm-btn-play {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  background: var(--accent-strong);
+  color: #fff;
+  flex-shrink: 0;
+}
+.home-bgm[data-expanded="1"] .home-bgm-btn-play {
+  width: 38px;
+  height: 38px;
+}
+.home-bgm-btn-play:hover {
+  background: var(--ink);
+  color: #fff;
+}
+.home-bgm[data-needs-gesture="1"] .home-bgm-btn-play {
+  background: var(--accent);
+  animation: home-bgm-pulse 1.6s ease-in-out infinite;
+}
+.home-bgm[data-playing="1"] .home-bgm-icon-play { display: none; }
+.home-bgm[data-playing="0"] .home-bgm-icon-pause { display: none; }
+.home-bgm[data-muted="1"] .home-bgm-icon-vol { display: none; }
+.home-bgm[data-muted="0"] .home-bgm-icon-muted { display: none; }
+@keyframes home-bgm-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(19, 185, 130, 0.45); }
+  50% { box-shadow: 0 0 0 8px rgba(19, 185, 130, 0); }
+}
+@media (max-width: 640px) {
+  .home-bgm {
+    right: 12px;
+    bottom: 12px;
+  }
+  .home-bgm[data-expanded="1"] {
+    padding: 8px 10px;
+    gap: 4px;
+  }
+  .home-bgm-title { font-size: 12px; max-width: 100px; }
+  .home-bgm-btn { width: 32px; height: 32px; }
+  .home-bgm-btn-play { width: 44px; height: 44px; }
+  .home-bgm[data-expanded="1"] .home-bgm-btn-play {
+    width: 36px;
+    height: 36px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-bgm { transition: none; }
+  .home-bgm[data-needs-gesture="1"] .home-bgm-btn-play { animation: none; }
+}
+
 /* ─── FOOTER ─── */
 footer {
   background: var(--ink);
@@ -6473,6 +6616,29 @@ body.hsk-fullscreen-active .hsk-tablet-iframe--fullscreen {
   </div>
 </footer>
 
+<div class="home-bgm" id="home-bgm" hidden role="region" aria-label="Homepage background music" data-expanded="0">
+  <div class="home-bgm-meta">
+    <span class="home-bgm-label" data-bgm-hint>Now playing</span>
+    <span class="home-bgm-title" data-bgm-title>Beyond Language</span>
+  </div>
+  <div class="home-bgm-controls">
+    <button type="button" class="home-bgm-btn" data-bgm-prev aria-label="Previous track" title="Previous">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 6h2v12H6V6zm3.5 6 8.5 6V6l-8.5 6z"/></svg>
+    </button>
+    <button type="button" class="home-bgm-btn home-bgm-btn-play" data-bgm-play aria-label="Play" title="Play">
+      <svg class="home-bgm-icon-play" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7L8 5z"/></svg>
+      <svg class="home-bgm-icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 5h3v14H7V5zm7 0h3v14h-3V5z"/></svg>
+    </button>
+    <button type="button" class="home-bgm-btn" data-bgm-next aria-label="Next track" title="Next">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16 6h2v12h-2V6zM6 18l8.5-6L6 6v12z"/></svg>
+    </button>
+    <button type="button" class="home-bgm-btn" data-bgm-mute aria-label="Mute" title="Mute">
+      <svg class="home-bgm-icon-vol" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 10v4h3.5L11 18V6L6.5 10H3zm10.5 2c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.73 2.5-2.25 2.5-4.02zM14 12c0 2.76-1.69 5.1-4.1 6.08l.7 1.87C14.04 18.74 16.5 15.65 16.5 12S14.04 5.26 10.6 4.05l-.7 1.87C12.31 6.9 14 9.24 14 12z"/></svg>
+      <svg class="home-bgm-icon-muted" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.5 12c0-1.77-1-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v4h3.5L11 17.73v-3.46l3.45 3.45A7.95 7.95 0 0 1 11 19.77v2.06a9.94 9.94 0 0 0 4.1-1.17L19.73 21 21 19.73 4.27 3zM11 5.27l-.88.88L11 7.03V5.27z"/></svg>
+    </button>
+  </div>
+</div>
+
 <div class="video-modal" id="video-modal" hidden role="dialog" aria-label="User story video">
   <div class="video-modal-backdrop" data-close></div>
   <div class="video-modal-panel">
@@ -6484,7 +6650,8 @@ body.hsk-fullscreen-active .hsk-tablet-iframe--fullscreen {
 </div>
 
 <script src="js/hsk-app-config.js?v=20260811protect"></script>
-<script src="js/router.js?v=20260731"></script>
+<script src="js/router.js?v=20260813bgm"></script>
+<script src="js/home-bgm.js?v=20260813bgm3"></script>
 <script src="js/experience-page.js"></script>
 <script src="js/hsk-page.js?v=20260811protect"></script>
 <script>

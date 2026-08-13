@@ -107,6 +107,7 @@
     } else if (window.stopHskPreviewCarousel) {
       window.stopHskPreviewCarousel();
     }
+    if (window.syncHomeBgm) window.syncHomeBgm();
     document.body.classList.toggle('site-page-hsk', page === 'hsk');
     updateNavActive(page);
     if (scrollTop) window.scrollTo({ top: 0, behavior: 'smooth' });
