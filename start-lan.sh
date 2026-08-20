@@ -32,6 +32,7 @@ if [ -n "$IP" ]; then
   echo "  局域网访问: http://${IP}:${PORT}/"
 fi
 echo ""
+echo "  双栏预览:   http://localhost:${PORT}/preview"
 echo "  可分享路径示例:"
 echo "    http://localhost:${PORT}/experience"
 echo "    http://localhost:${PORT}/about"

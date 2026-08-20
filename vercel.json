@@ -24,6 +24,16 @@
       "source": "/Web%20v3.0.html",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/preview",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/preview.html",
+      "destination": "/",
+      "permanent": false
     }
   ],
   "rewrites": [

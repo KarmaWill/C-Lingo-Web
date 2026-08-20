@@ -20,6 +20,9 @@ class SPAHandler(http.server.SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = urllib.parse.unquote(self.path.split("?", 1)[0])
+        if path in ("/preview", "/preview/"):
+            self.path = "/preview.html"
+            return super().do_GET()
         rel = path.lstrip("/")
         if rel:
             fs_path = os.path.join(ROOT, rel)

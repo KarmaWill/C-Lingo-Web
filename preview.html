@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C-Lingo 预览 — 网页 / 手机</title>
+<style>
+  :root {
+    --bar: #0d1f1a;
+    --ink: #e8f6ee;
+    --muted: #8fb3a4;
+    --line: rgba(232, 246, 238, 0.12);
+    --desk: 1440;
+    --desk-h: 900;
+    --phone: 390;
+    --phone-h: 844;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "DM Sans", "PingFang SC", sans-serif;
+    background: #071410;
+    color: var(--ink);
+    overflow: hidden;
+  }
+  .bar {
+    height: 52px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    background: var(--bar);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar strong { font-size: 13px; letter-spacing: 0.04em; font-weight: 600; }
+  .bar span { color: var(--muted); font-size: 12px; }
+  .bar input {
+    flex: 1;
+    max-width: 420px;
+    height: 32px;
+    border: 1px solid var(--line);
+    background: #10261f;
+    color: var(--ink);
+    border-radius: 8px;
+    padding: 0 12px;
+    font: inherit;
+    font-size: 13px;
+  }
+  .bar button {
+    height: 32px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 8px;
+    background: #006d50;
+    color: #f7fff6;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .stage {
+    height: calc(100% - 52px);
+    display: grid;
+    grid-template-columns: minmax(640px, 1fr) 420px;
+    min-height: 0;
+    overflow: auto;
+  }
+  .pane {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    border-right: 1px solid var(--line);
+  }
+  .pane header {
+    flex: none;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .fit {
+    flex: 1;
+    min-height: 0;
+    padding: 0 16px 16px;
+    overflow: hidden;
+  }
+  .desk-fit { position: relative; }
+  .desk-slot {
+    width: 100%;
+    height: 100%;
+  }
+  .desk-slot iframe {
+    width: 1440px;
+    height: 900px;
+    transform-origin: top left;
+    background: #fff;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  }
+  .phone-fit {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .phone-stage {
+    width: 390px;
+    height: 844px;
+    background: #fff;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  }
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    background: #fff;
+  }
+</style>
+</head>
+<body>
+  <div class="bar">
+    <strong>双栏预览</strong>
+    <span>本地审阅，不上线</span>
+    <input id="path" value="/" spellcheck="false" aria-label="页面路径">
+    <button type="button" id="go">打开</button>
+  </div>
+  <div class="stage">
+    <section class="pane">
+      <header>网页版 · 1440 × 900</header>
+      <div class="fit desk-fit" id="desk-fit">
+        <div class="desk-slot">
+          <iframe id="desk" title="网页版" src="/"></iframe>
+        </div>
+      </div>
+    </section>
+    <section class="pane">
+      <header>手机版 · 390 × 844</header>
+      <div class="fit phone-fit">
+        <div class="phone-stage">
+          <iframe id="phone" title="手机版" src="/"></iframe>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    var deskFit = document.getElementById("desk-fit");
+    var desk = document.getElementById("desk");
+    var phone = document.getElementById("phone");
+    var pathInput = document.getElementById("path");
+
+    function fitDesk() {
+      var w = deskFit.clientWidth;
+      var h = deskFit.clientHeight;
+      if (w < 2 || h < 2) return;
+      var s = Math.min(w / 1440, h / 900);
+      desk.style.transform = "scale(" + s + ")";
+    }
+
+    function normalizePath(value) {
+      var v = (value || "/").trim();
+      if (!v) v = "/";
+      if (/^https?:\/\//i.test(v)) {
+        try { v = new URL(v).pathname + new URL(v).search + new URL(v).hash; }
+        catch (e) { v = "/"; }
+      }
+      if (v.charAt(0) !== "/") v = "/" + v;
+      if (v.indexOf("/preview") === 0) v = "/";
+      return v;
+    }
+
+    function openPath() {
+      var v = normalizePath(pathInput.value);
+      pathInput.value = v;
+      desk.src = v;
+      phone.src = v;
+    }
+
+    window.addEventListener("resize", fitDesk);
+    document.getElementById("go").addEventListener("click", openPath);
+    pathInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") openPath();
+    });
+    requestAnimationFrame(function () {
+      fitDesk();
+      requestAnimationFrame(fitDesk);
+    });
+  </script>
+</body>
+</html>

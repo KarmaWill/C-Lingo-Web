@@ -3,7 +3,7 @@
   var STORAGE_MUTED = 'clingo-home-bgm-muted';
   var DEFAULT_VOLUME = 0.32;
 
-  /** Fixed playlist order (loop 1→2→3→4→1). Suno links are source-of-truth titles only. */
+  /** Fixed playlist order (loop to start). Suno links are titles only — local mp3 required. */
   var PLAYLIST = [
     {
       id: 'beyond-language',
@@ -28,6 +28,30 @@
       title: 'Lumi-Nation (Musical)',
       src: 'assets/audio/04-lumi-nation-musical.mp3',
       suno: 'https://suno.com/s/z9ktnhOEpie36ptv'
+    },
+    {
+      id: 'beyond-language-global',
+      title: 'Beyond Language (Global Version)',
+      src: 'assets/audio/05-beyond-language-global.mp3',
+      suno: 'https://suno.com/s/bdztZwE6SgN4GRNT'
+    },
+    {
+      id: 'beyond-language-z',
+      title: 'Beyond Language Z',
+      src: 'assets/audio/06-beyond-language-z.mp3',
+      suno: 'https://suno.com/s/1YyhyYhiORokjtkg'
+    },
+    {
+      id: 'explorer',
+      title: '探索者',
+      src: 'assets/audio/07-explorer.mp3',
+      suno: 'https://suno.com/s/yXJFtJLJpadkh2X6'
+    },
+    {
+      id: 'the-explorer',
+      title: 'The Explorer',
+      src: 'assets/audio/08-the-explorer.mp3',
+      suno: 'https://suno.com/s/skwOfICJYuB4lPri'
     }
   ];
 
@@ -360,7 +384,7 @@
     });
     ready = true;
 
-    loadTrack(0, !sessionPaused());
+    loadTrack(0, window.self === window.top && !sessionPaused());
     syncRoute();
   }
 
